@@ -1,22 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
-import Test from './Test';
+import React, { useState, userState } from "react";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Heading from "./Component/Heading";
+import Upload from "./Component/Upload";
+import List from "./Component/List";
 
 function App() {
+  const [ContentList, setContentList] = useState([]);
 
-
-
-  
   return (
     <div>
-      <h1>Hello, wold</h1>
-     
-      <Test />
-     
+      <BrowserRouter>
+        <Heading />
+        <Routes>
+          <Route
+            path="/list"
+            element={
+              <List ContentList={ContentList} setContentList={setContentList} />
+            }
+          />
+          <Route
+            path="/upload"
+            element={
+              <Upload
+                ContentList={ContentList}
+                setContentList={setContentList}
+              />
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
 
 export default App;
-

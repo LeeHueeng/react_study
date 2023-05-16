@@ -1,26 +1,17 @@
-import React, { useState, userState } from "react";
+import React, { useState } from "react";
 
-function Test() {
+function Upload(props) {
   const [Content, setContent] = useState("");
-  const [ContentList, setContentList] = useState([]);
+
   const onSubmit = () => {
-    let tempArr = [...ContentList];
+    let tempArr = [...props.ContentList];
     tempArr.push(Content);
-    setContentList([...tempArr]);
+    props.setContentList([...tempArr]);
     setContent("");
   };
-
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      {ContentList.map((Conten, idx) => {
-        return <div key={idx}>,{Content}</div>;
-      })}
+    <div>
+      {" "}
       <input
         type="text"
         value={Content}
@@ -40,4 +31,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default Upload;
