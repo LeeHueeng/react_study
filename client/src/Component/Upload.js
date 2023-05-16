@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function Upload(props) {
   const [Content, setContent] = useState("");
@@ -9,6 +9,11 @@ function Upload(props) {
     props.setContentList([...tempArr]);
     setContent("");
   };
+
+  useEffect(() => {
+    console.log("content 가 바뀌었습니다.");
+  }, [Content]);
+
   return (
     <div>
       {" "}
