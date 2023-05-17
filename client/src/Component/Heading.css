@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
+
+.Navbarbackground {
+  background-color: #8064a2;
+}
+
+* {
+  font-family: "Jua", sans-serif;
+}
