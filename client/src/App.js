@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Heading from "./Component/Heading";
-import Upload from "./Component/Upload";
-import List from "./Component/List";
+import Upload from "./Component/Post/Upload";
+import List from "./Component/Post/List";
 
 function App() {
   const [ContentList, setContentList] = useState([]);
@@ -15,7 +15,7 @@ function App() {
         <Heading />
         <Routes>
           <Route
-            path="/list"
+            path="/"
             element={
               <List ContentList={ContentList} setContentList={setContentList} />
             }
@@ -36,4 +36,3 @@ function App() {
 }
 
 export default App;
-

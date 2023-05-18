@@ -34,11 +34,28 @@ app.get("*", (요청, 응답) => {
   응답.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
-app.post("/api/test", (요청, 응답) => {
-  const CommunityPost = new Post({ title: "test", content: "테스트입니다." });
-  CommunityPost.save().then(() => {
-    응답.status(200).json({ success: true, text: " 안녕하세요." });
-  });
+app.post("/api/post/submit", (req, res) => {
+  let temp = req.body;
+
+  const CommunityPost = new Post(temp);
+  CommunityPost.save()
+    .then(() => {
+      res.status(200).json({ success: true });
+    })
+    .catch((err) => {
+      res.status(400).json({ success: false });
+    });
+});
+
+app.post("/api/post/list", (req, res) => {
+  Post.find()
+    .exec()
+    .then((doc) => {
+      res.status(200).json({ success: true, postList: doc });
+    })
+    .catch((err) => {
+      es.status(400).json({ sucess: false });
+    });
 });
 
 /*
