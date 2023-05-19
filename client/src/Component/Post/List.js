@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ListDiv, ListItem } from "../../style/ListCSS.js";
 
 function List(props) {
   const [PostList, setPostList] = useState([]);
@@ -8,7 +9,7 @@ function List(props) {
     axios
       .post("/api/post/list")
       .then((response) => {
-        if (response.data.succes) {
+        if (response.data.success) {
           setPostList([...response.data.postList]);
         }
         console.log(response.data);
@@ -19,19 +20,17 @@ function List(props) {
   }, []);
 
   return (
-    <div>
+    <ListDiv>
       <h1>List</h1>
-
       {PostList.map((post, idx) => {
         return (
-          <div>
+          <ListItem>
             <p>제목: {post.title}</p>
             내용 : {post.content}
-            <hr />
-          </div>
+          </ListItem>
         );
       })}
-    </div>
+    </ListDiv>
   );
 }
 

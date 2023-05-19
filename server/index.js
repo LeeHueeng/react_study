@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const { Post } = require("./Model/Post.js");
+const { Counter } = require("./Model/Counter.js");
 
 app.listen(port, () => {
   mongoose
@@ -36,25 +37,31 @@ app.get("*", (요청, 응답) => {
 
 app.post("/api/post/submit", (req, res) => {
   let temp = req.body;
-
-  const CommunityPost = new Post(temp);
-  CommunityPost.save()
-    .then(() => {
-      res.status(200).json({ success: true });
+  Counter.find({ name: "counter" })
+    .exec()
+    .then((counter) => {
+      temp.postNum = counter.postNum;
+      const CommunityPost = new Post(temp);
+      CommunityPost.save().then(() => {
+        Counter.updateOne({ name: "counter" }, { $inc: { postNum: 1 } }).then(
+          () => {
+            res.status(200).json({ success: true });
+          }
+        );
+      });
     })
     .catch((err) => {
       res.status(400).json({ success: false });
     });
 });
-
-app.post("", (req, res) => {
+app.post("/api/post/list", (req, res) => {
   Post.find()
     .exec()
     .then((doc) => {
       res.status(200).json({ success: true, postList: doc });
     })
     .catch((err) => {
-      es.status(400).json({ sucess: false });
+      res.status(400).json({ sucess: false });
     });
 });
 
@@ -63,4 +70,3 @@ app.post("", (req, res) => {
 2. client CSS(Bootstrap, Emotion)
 
 */
-/api/post/list
