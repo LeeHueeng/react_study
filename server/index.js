@@ -47,7 +47,7 @@ app.post("/api/post/submit", (req, res) => {
     });
 });
 
-app.post("/api/post/list", (req, res) => {
+app.post("", (req, res) => {
   Post.find()
     .exec()
     .then((doc) => {
@@ -63,3 +63,4 @@ app.post("/api/post/list", (req, res) => {
 2. client CSS(Bootstrap, Emotion)
 
 */
+/api/post/list
