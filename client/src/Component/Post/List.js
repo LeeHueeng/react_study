@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ListDiv, ListItem } from "../../style/ListCSS.js";
-
+import { Link } from "react-router-dom";
 function List(props) {
   const [PostList, setPostList] = useState([]);
 
@@ -24,9 +24,11 @@ function List(props) {
       <h1>List</h1>
       {PostList.map((post, idx) => {
         return (
-          <ListItem>
-            <p>제목: {post.title}</p>
-            내용 : {post.content}
+          <ListItem key={idx}>
+            <Link to={"/post/${post.postNum}"}>
+              <p>제목: {post.title}</p>
+              내용 : {post.content}
+            </Link>
           </ListItem>
         );
       })}
