@@ -20,4 +20,7 @@ const DetailLoding = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-export { DetailDiv, DetailResultDIV, DetailLoding };
+const Post = styled.div``;
+const BtnDiv = styled.div``;
+
+export { DetailDiv, DetailResultDIV, DetailLoding, BtnDiv, Post };
