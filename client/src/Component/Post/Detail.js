@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Spinner from "react-bootstrap/Spinner";
+import {
+  DetailDiv,
+  DetailResultDIV,
+  DetailLoding,
+} from "../../style/DetailCSS.js";
 
 function Detail() {
   let params = useParams();
@@ -21,21 +27,29 @@ function Detail() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  });
 
   useEffect(() => {
     console.log(PostInfo);
   }, [PostInfo]);
 
   return (
-    <div>
-      {Flag ? (
-        <div>
-          {PostInfo.title}
-          {PostInfo.content}
-        </div>
-      ) : null}
-    </div>
+    <DetailDiv>
+      <DetailResultDIV>
+        {Flag ? (
+          <div>
+            {PostInfo.title}
+            {PostInfo.content}
+          </div>
+        ) : (
+          <DetailLoding>
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </DetailLoding>
+        )}
+      </DetailResultDIV>
+    </DetailDiv>
   );
 }
 
