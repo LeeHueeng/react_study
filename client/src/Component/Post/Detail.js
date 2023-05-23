@@ -65,14 +65,10 @@ function Detail() {
               {PostInfo.title}
               {PostInfo.content}
             </Post>
-            <BtnDiv>
-              <Link to={`/edit/${PostInfo.postNum}`}>
-                <button className="edit">수정</button>
-              </Link>
-              <button className="delete" onClick={() => DeleteHandler()}>
-                삭제
-              </button>
-            </BtnDiv>
+            <Link to={`/edit/${PostInfo.postNum}`}>
+              <BtnDiv>수정</BtnDiv>
+            </Link>
+            <BtnDiv onClick={() => DeleteHandler()}>삭제</BtnDiv>
           </>
         ) : (
           <DetailLoding>

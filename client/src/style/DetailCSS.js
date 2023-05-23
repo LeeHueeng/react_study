@@ -21,6 +21,19 @@ const DetailLoding = styled.div`
 `;
 
 const Post = styled.div``;
-const BtnDiv = styled.div``;
+const BtnDiv = styled.button`
+  display: block;
+  position: relative;
+  width: 100px;
+  padding: 0;
+  margin: 10px 20px 10px 0;
+  font-weight: 700;
+  text-align: center;
+  line-height: 50px;
+  color: #fff;
+  border-radius: 50px;
+  background: black;
+  text-decoration: none;
+`;
 
 export { DetailDiv, DetailResultDIV, DetailLoding, BtnDiv, Post };

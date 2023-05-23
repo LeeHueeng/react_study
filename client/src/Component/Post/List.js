@@ -21,7 +21,6 @@ function List(props) {
 
   return (
     <ListDiv>
-      <h1>List</h1>
       {PostList.map((post, idx) => {
         return (
           <ListItem key={idx}>
