@@ -6,6 +6,7 @@ import {
 } from "../../style/UplodeCSS.js";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import ImageUpload from "./ImageUpload.js";
 
 function Upload(props) {
   const [Title, setTitle] = useState("");
@@ -51,7 +52,7 @@ function Upload(props) {
             setTitle(event.currentTarget.value);
           }}
         />
-
+        <ImageUpload></ImageUpload>
         <label htmlFor="content">내용</label>
         <textarea
           value={Content}

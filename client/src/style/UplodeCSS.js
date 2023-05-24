@@ -10,8 +10,10 @@ const UploadForm = styled.form`
   margin:0 auto;
   display:flex;
   flex-direction:column;
-  input{
-    border-radius:10px
+  #title{
+    border-radius:10px;
+    margin-bottom: 10px;
+    margin-top:10px;
     border:1px solid #c6c6c6;
     padding:10px;
     &:active,
@@ -19,10 +21,11 @@ const UploadForm = styled.form`
       outline:none;
     }
   }
+
   textarea{
     min-height:350px;
     resize: none;
-    border-radius:10px
+    border-radius:10px;
     border:1px solid #c6c6c6;
     padding:10px;
     &:active,
