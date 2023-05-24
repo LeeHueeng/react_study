@@ -8,6 +8,9 @@ import {
   DetailLoding,
   BtnDiv,
   Post,
+  DetailTitle,
+  DetailContent,
+  DetailAnswer,
 } from "../../style/DetailCSS.js";
 import { Link } from "react-router-dom";
 
@@ -60,16 +63,20 @@ function Detail() {
     <DetailDiv>
       <DetailResultDIV>
         {Flag ? (
-          <>
+          <DetailAnswer>
             <Post>
-              {PostInfo.title}
-              {PostInfo.content}
+              <DetailTitle>{PostInfo.title}</DetailTitle>
+              <hr />
+              <DetailContent>{PostInfo.content}</DetailContent>
             </Post>
-            <Link to={`/edit/${PostInfo.postNum}`}>
-              <BtnDiv>수정</BtnDiv>
-            </Link>
+
+            <button>
+              <Link to={`/api/post/edit/${params.postNum}`}>수정 </Link>
+            </button>
+            <BtnDiv>수정</BtnDiv>
+
             <BtnDiv onClick={() => DeleteHandler()}>삭제</BtnDiv>
-          </>
+          </DetailAnswer>
         ) : (
           <DetailLoding>
             <Spinner animation="border" role="status">
