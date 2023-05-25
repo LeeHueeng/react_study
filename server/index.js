@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 
 app.use(express.static(path.join(__dirname, "../client/build")));
 app.use(express.json());
+app.use("/image", express.static("./image"));
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/post", require("./Router/post.js"));

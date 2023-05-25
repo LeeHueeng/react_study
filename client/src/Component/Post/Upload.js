@@ -12,6 +12,7 @@ function Upload(props) {
   const [Title, setTitle] = useState("");
   const [Content, setContent] = useState("");
   let navigate = useNavigate();
+  const [Image, setImage] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ function Upload(props) {
     let body = {
       title: Title,
       content: Content,
+      image: Image,
     };
 
     axios
@@ -52,7 +54,7 @@ function Upload(props) {
             setTitle(event.currentTarget.value);
           }}
         />
-        <ImageUpload></ImageUpload>
+        <ImageUpload setImage={setImage}></ImageUpload>
         <label htmlFor="content">내용</label>
         <textarea
           value={Content}

@@ -6,7 +6,6 @@ import {
   DetailDiv,
   DetailResultDIV,
   DetailLoding,
-  BtnDiv,
   Post,
   DetailTitle,
   DetailContent,
@@ -67,15 +66,22 @@ function Detail() {
             <Post>
               <DetailTitle>{PostInfo.title}</DetailTitle>
               <hr />
+              {PostInfo.image ? (
+                <img
+                  src={`http://localhost:5000/${PostInfo.image}`}
+                  alt=""
+                  style={{ width: "100%", height: "auto" }}
+                />
+              ) : null}
+
               <DetailContent>{PostInfo.content}</DetailContent>
             </Post>
 
-            <button>
-              <Link to={`/api/post/edit/${params.postNum}`}>수정 </Link>
-            </button>
-            <BtnDiv>수정</BtnDiv>
+            <Link to={`/edit/${params.postNum}`}>
+              <button>수정</button>
+            </Link>
 
-            <BtnDiv onClick={() => DeleteHandler()}>삭제</BtnDiv>
+            <button onClick={() => DeleteHandler()}>삭제</button>
           </DetailAnswer>
         ) : (
           <DetailLoding>

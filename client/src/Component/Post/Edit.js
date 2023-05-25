@@ -7,6 +7,7 @@ import {
   UploadForm,
   UploadButtonDiv,
 } from "../../style/UplodeCSS.js";
+import ImageUpload from "./ImageUpload.js";
 
 function Edit() {
   const [Title, setTitle] = useState("");
@@ -15,6 +16,7 @@ function Edit() {
   const [setFlag] = useState(false);
   let navigate = useNavigate();
   let params = useParams();
+  const [Image, setImage] = useState("");
 
   useEffect(() => {
     let body = {
@@ -42,6 +44,7 @@ function Edit() {
       title: Title,
       content: Content,
       postNum: params.postNum,
+      image: Image,
     };
 
     axios
@@ -78,7 +81,7 @@ function Edit() {
               setTitle(event.currentTarget.value);
             }}
           />
-
+          <ImageUpload setImage={setImage}></ImageUpload>
           <label htmlFor="content">내용</label>
           <textarea
             value={Content}
