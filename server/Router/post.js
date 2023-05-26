@@ -107,4 +107,5 @@ router.post(
     res.status(200).json({ success: true, filePath: res.req.file.location });
   }
 );
+
 module.exports = router;
