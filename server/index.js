@@ -3,21 +3,17 @@ const path = require("path");
 const app = express();
 const port = 5000;
 const mongoose = require("mongoose");
-
-//mongodb+srv://zzxx373014:!hyeonu5380@cluster0.ph9rwlh.mongodb.net/?retryWrites=true&w=majority
+const config = require("./config/key.js");
 
 app.use(express.static(path.join(__dirname, "../client/build")));
 app.use(express.json());
 app.use("/image", express.static("./image"));
 app.use(express.urlencoded({ extended: true }));
-
 app.use("/api/post", require("./Router/post.js"));
 
 app.listen(port, () => {
   mongoose
-    .connect(
-      "mongodb+srv://zzxx373014:!hyeonu5380@cluster0.ph9rwlh.mongodb.net/Community?retryWrites=true&w=majority"
-    )
+    .connect(config.mongoURI)
     .then(() => {
       console.log("Connectiong MongoDB...");
       console.log(`Example app listening on port ${port}`);
@@ -38,5 +34,4 @@ app.get("*", (요청, 응답) => {
 /*
 1. post MongoDB model
 2. client CSS(Bootstrap, Emotion)
-
 */
