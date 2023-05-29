@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import LoginDiv from "../../style/UserCSS";
 
 import firebase from "../../firebase";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+let navigate = useNavigate();
+
 function Register() {
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
@@ -13,7 +18,7 @@ function Register() {
     if (!(Name && Email && PW && PWConfirm)) {
       return alert("모든 값을 채워주세요!");
     }
-    if (PW !== PWConfirm) {
+    if (PW != PWConfirm) {
       return alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
     }
     let createdUser = await firebase
@@ -23,10 +28,24 @@ function Register() {
       displayName: Name,
     });
     console.log(createdUser.user);
+    let body = {
+      email: createdUser.user.multiFactor.email,
+      displayName: createdUser.user.multiFactor.displayName,
+      uid: createdUser.user.multiFactor.uid,
+    };
+    axios.post("/api/user").then((response) => {
+      if (response.data.success) {
+        navigate("/login");
+        //회원가입 성공
+      } else {
+        //회원가입 실패시
+        return alert("회원가입이 실패했습니다.");
+      }
+    });
   };
   return (
     <LoginDiv>
-      <from>
+      <form>
         <lable>이름</lable>
         <input
           type="name"
@@ -52,7 +71,7 @@ function Register() {
           onChange={(e) => setPWConfirm(e.currentTarget.value)}
         />
         <button onClick={(e) => RefisterFunc(e)}>회원가입</button>
-      </from>
+      </form>
     </LoginDiv>
   );
 }
