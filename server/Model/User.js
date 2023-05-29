@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema(
     displayName: String,
     uid: String,
   },
-  { colletion: "users" }
+  { collection: "users" }
 );
 
 const User = mongoose.model("User", userSchema);

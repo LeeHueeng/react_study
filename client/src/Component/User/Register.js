@@ -3,17 +3,18 @@ import LoginDiv from "../../style/UserCSS";
 
 import firebase from "../../firebase";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
-let navigate = useNavigate();
+import { useNavigate, useSubmit } from "react-router-dom";
 
 function Register() {
+  let navigate = useNavigate();
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [PW, setPW] = useState("");
   const [PWConfirm, setPWConfirm] = useState("");
+  const [Flag, setFlag] = useState(false);
 
   const RefisterFunc = async (e) => {
+    setFlag(true);
     e.preventDefault();
     if (!(Name && Email && PW && PWConfirm)) {
       return alert("모든 값을 채워주세요!");
@@ -29,11 +30,11 @@ function Register() {
     });
     console.log(createdUser.user);
     let body = {
-      email: createdUser.user.multiFactor.email,
-      displayName: createdUser.user.multiFactor.displayName,
-      uid: createdUser.user.multiFactor.uid,
+      email: createdUser.user.multiFactor.user.email,
+      displayName: createdUser.user.multiFactor.user.displayName,
+      uid: createdUser.user.multiFactor.user.uid,
     };
-    axios.post("/api/user").then((response) => {
+    axios.post("/api/user//register", body).then((response) => {
       if (response.data.success) {
         navigate("/login");
         //회원가입 성공
@@ -62,15 +63,19 @@ function Register() {
         <input
           type="password"
           value={PW}
+          minLength={8}
           onChange={(e) => setPW(e.currentTarget.value)}
         />
         <lable>비밀번호 확인</lable>
         <input
           type="password"
           value={PWConfirm}
+          minLength={8}
           onChange={(e) => setPWConfirm(e.currentTarget.value)}
         />
-        <button onClick={(e) => RefisterFunc(e)}>회원가입</button>
+        <button disabled={Flag} onClick={(e) => RefisterFunc(e)}>
+          회원가입
+        </button>
       </form>
     </LoginDiv>
   );
