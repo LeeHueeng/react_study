@@ -14,13 +14,15 @@ function Register() {
   const [Flag, setFlag] = useState(false);
 
   const RefisterFunc = async (e) => {
-    setFlag(true);
     e.preventDefault();
     if (!(Name && Email && PW && PWConfirm)) {
       return alert("모든 값을 채워주세요!");
     }
     if (PW != PWConfirm) {
       return alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+    }
+    if (PW.length < 6) {
+      return alert("비밀번호를 8자리 이상 해주세요!");
     }
     let createdUser = await firebase
       .auth()
@@ -34,7 +36,9 @@ function Register() {
       displayName: createdUser.user.multiFactor.user.displayName,
       uid: createdUser.user.multiFactor.user.uid,
     };
+
     axios.post("/api/user//register", body).then((response) => {
+      setFlag(true);
       if (response.data.success) {
         navigate("/login");
         //회원가입 성공
