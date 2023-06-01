@@ -18,7 +18,7 @@ function Register() {
     if (!(Name && Email && PW && PWConfirm)) {
       return alert("모든 값을 채워주세요!");
     }
-    if (PW != PWConfirm) {
+    if (PW !== PWConfirm) {
       return alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
     }
     if (PW.length < 6) {

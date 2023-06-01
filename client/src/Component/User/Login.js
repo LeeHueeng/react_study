@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginDiv from "../../style/UserCSS";
 
@@ -17,16 +17,22 @@ function Login() {
     }
     try {
       await firebase.auth().signInWithEmailAndPassword(Email, PW);
+      navigate("/");
     } catch (error) {
-      if ((error.code = "auth/user-not-found")) {
+      if (error.code === "auth/user-not-found") {
         setErrorMsg("존재하지 않는 이메일입니다.");
-      } else if ((error.code = "auth/wrong-password")) {
+      } else if (error.code === "auth/wrong-password") {
         setErrorMsg("비밀번호가 일치하지 않습니다.");
       } else {
         setErrorMsg("로그인이 실패하였습니다.");
       }
     }
   };
+  useEffect(() => {
+    setTimeout(() => {
+      setErrorMsg("");
+    }, 1000);
+  }, [ErrorMsg]);
 
   return (
     <LoginDiv>
@@ -43,7 +49,7 @@ function Login() {
         value={PW}
         onChange={(e) => setPW(e.currentTarget.value)}
       />
-      {ErrorMsg != "" && <p>{ErrorMSG}</p>}
+      {ErrorMsg !== "" && <p>{ErrorMsg}</p>}
       <button onClick={(e) => SingInFunc(e)}>로그인</button>
       <button
         onClick={(e) => {
