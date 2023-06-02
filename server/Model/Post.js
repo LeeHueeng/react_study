@@ -6,6 +6,10 @@ const postSchema = new mongoose.Schema(
     content: String,
     postNum: Number,
     image: String,
+    auther: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Users",
+    },
   },
   { colletion: "Posts" }
 );
