@@ -1,15 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "./Heading.css";
+import { useSelector } from "react-redux";
+import firebase from "../firebase.js";
 
 function Heading() {
+  const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const LogoutHandler = () => {
+    firebase.auth().signOut();
+    navigate("/");
+  };
   return (
     <Navbar expand="lg" variant="dark" style={{ backgroundColor: "#8064A2" }}>
       <Container>
-        <Navbar.Brand href="#home">Hueeng</Navbar.Brand>
+        <Navbar.Brand href="/">Hueeng</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -34,7 +42,10 @@ function Heading() {
             >
               upload
             </Link>
-
+          </Nav>
+        </Navbar.Collapse>
+        <Navbar.Collapse className="justify-content-end">
+          {user.accessToken === "" ? (
             <Link
               to="/login "
               style={{
@@ -45,7 +56,14 @@ function Heading() {
             >
               login
             </Link>
-          </Nav>
+          ) : (
+            <Navbar.Text
+              style={{ color: "white", cursor: "pointe" }}
+              onClick={() => LogoutHandler()}
+            >
+              Logout
+            </Navbar.Text>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
