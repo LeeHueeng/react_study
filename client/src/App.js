@@ -21,7 +21,7 @@ function App() {
         dispatch(clearUser());
       }
     });
-  }, []);
+  });
 
   return (
     <div>
