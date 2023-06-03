@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
 import {
   DetailDiv,
@@ -18,6 +19,7 @@ function Detail() {
   let navigate = useNavigate();
   const [PostInfo, setPostInfo] = useState({});
   const [Flag, setFlag] = useState(false);
+  const user = useSelector((state) => state.user);
   useEffect(() => {
     let body = {
       postNum: params.postNum,
@@ -44,6 +46,7 @@ function Detail() {
       let body = {
         postNum: params.postNum,
       };
+
       axios
         .post("/api/post/delete", body)
         .then((response) => {
@@ -65,6 +68,7 @@ function Detail() {
           <DetailAnswer>
             <Post>
               <DetailTitle>{PostInfo.title}</DetailTitle>
+              <h3> 작성자 : {PostInfo.author.displayName}</h3>
               <hr />
               {PostInfo.image ? (
                 <img
@@ -73,15 +77,17 @@ function Detail() {
                   style={{ width: "100%", height: "auto" }}
                 />
               ) : null}
-
               <DetailContent>{PostInfo.content}</DetailContent>
             </Post>
 
-            <Link to={`/edit/${params.postNum}`}>
-              <button>수정</button>
-            </Link>
-
-            <button onClick={() => DeleteHandler()}>삭제</button>
+            {user.uid === PostInfo.author.uid && (
+              <>
+                <Link to={`/edit/${params.postNum}`}>
+                  <button>수정</button>
+                </Link>
+                <button onClick={() => DeleteHandler()}>삭제</button>
+              </>
+            )}
           </DetailAnswer>
         ) : (
           <DetailLoding>

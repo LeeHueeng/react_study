@@ -53,6 +53,7 @@ router.post("/list", (req, res) => {
 
 router.post("/detail", (req, res) => {
   Post.findOne({ postNum: Number(req.body.postNum) })
+    .populate("author")
     .exec()
     .then((doc) => {
       console.log(doc);
