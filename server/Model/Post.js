@@ -8,7 +8,7 @@ const postSchema = new mongoose.Schema(
     image: String,
     author: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Users",
+      ref: "User",
     },
   },
   { collection: "Posts" }
