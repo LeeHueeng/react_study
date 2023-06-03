@@ -22,7 +22,7 @@ function Upload(props) {
       alert("로그인한 회원만 글을 작성 할 수 있습니다.");
       navigate("/login");
     }
-  }, []);
+  });
 
   const onSubmit = (e) => {
     e.preventDefault();

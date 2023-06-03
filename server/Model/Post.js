@@ -6,12 +6,12 @@ const postSchema = new mongoose.Schema(
     content: String,
     postNum: Number,
     image: String,
-    auther: {
+    author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Users",
     },
   },
-  { colletion: "Posts" }
+  { collection: "Posts" }
 );
 
 const Post = mongoose.model("Post", postSchema);
