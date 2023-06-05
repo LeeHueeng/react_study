@@ -12,7 +12,6 @@ function List(props) {
         if (response.data.success) {
           setPostList([...response.data.postList]);
         }
-        console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -22,7 +21,6 @@ function List(props) {
   return (
     <ListDiv>
       {PostList.map((post, idx) => {
-        console.log(post);
         return (
           <ListItem key={idx}>
             <Link to={`/post/${post.postNum}`}>

@@ -4,7 +4,7 @@ import Spinner from "react-bootstrap/Spinner";
 import { DetailLoding } from "../../style/DetailCSS.js";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
+import RepleArea from "../Reple/RepleArea";
 function PostArea() {
   const [PostInfo, setPostInfo] = useState({});
   const [Flag, setFlag] = useState(false);
@@ -25,14 +25,17 @@ function PostArea() {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, [params.postNum]);
   useEffect(() => {
     console.log(PostInfo);
   }, [PostInfo]);
   return (
     <div>
       {Flag ? (
-        <Detail PostInfo={PostInfo} />
+        <>
+          <Detail PostInfo={PostInfo} />
+          <RepleArea />
+        </>
       ) : (
         <DetailLoding>
           <Spinner animation="border" role="status">
