@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import LoginDiv from "../../style/UserCSS";
-
 import firebase from "../../firebase";
 import axios from "axios";
-import { useNavigate, useSubmit } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   let navigate = useNavigate();
@@ -51,7 +50,7 @@ function Register() {
   return (
     <LoginDiv>
       <form>
-        <lable>이름</lable>
+        <lable>닉네임</lable>
         <input
           type="name"
           value={Name}

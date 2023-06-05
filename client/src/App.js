@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { loginUser, clearUser } from "./Reducer/userSlice";
 import firebase from "./firebase.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Detail from "./Component/Post/Detail";
+import PostArea from "./Component/Post/PostArea";
 import Heading from "./Component/Heading";
 import Upload from "./Component/Post/Upload";
 import List from "./Component/Post/List";
@@ -30,7 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={<List />} />
           <Route path="/upload" element={<Upload />} />
-          <Route path="/post/:postNum" element={<Detail />} />
+          <Route path="/post/:postNum" element={<PostArea />} />
           <Route path="/edit/:postNum" element={<Edit />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
