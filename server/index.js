@@ -11,6 +11,8 @@ app.use("/image", express.static("./image"));
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/post", require("./Router/post.js"));
 app.use("/api/user", require("./Router/user.js"));
+app.use("/api/reple", require("./Router/reple.js"));
+
 app.listen(port, () => {
   mongoose
     .connect(config.mongoURI)
