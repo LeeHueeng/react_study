@@ -11,7 +11,7 @@ const postSchema = new mongoose.Schema(
       ref: "User",
     },
   },
-  { collection: "Posts" }
+  { collection: "Post" }
 );
 
 const Post = mongoose.model("Post", postSchema);
