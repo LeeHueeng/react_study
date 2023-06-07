@@ -15,7 +15,10 @@ router.post("/submit", (req, res) => {
     .then((userInfo) => {
       temp.author = userInfo._id;
       const NewReple = new Reple(temp);
-      NewReple.save(() => {
+      NewReple.save((err) => {
+        if (err) {
+          return res.status(500)({ success: false, error: err });
+        }
         Post.findOneAndUpdate(
           {
             _id: req.body.postId,
