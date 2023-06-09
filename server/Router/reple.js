@@ -22,7 +22,7 @@ router.post("/submit", (req, res) => {
         Post.findOneAndUpdate(
           {
             _id: req.body.postId,
-          },
+          }
           { $inc: { repleNum: 1 } }
         )
           .exec()
