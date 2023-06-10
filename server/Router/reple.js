@@ -4,7 +4,7 @@ const { Post } = require("../Model/Post.js");
 const { Reple } = require("../Model/Reple.js");
 const { User } = require("../Model/User.js");
 
-router.post("/reple", (req, res) => {
+router.post("/submit", (req, res) => {
   let temp = {
     reple: req.body.reple,
     postId: req.body.postId,
@@ -34,6 +34,25 @@ router.post("/reple", (req, res) => {
     })
     .catch((err) => {
       return res.status(400).json({ success: false });
+    });
+});
+
+router.post("/getReple", (req, res) => {
+  Reple.find({ postId: req.body.postId })
+    .populate("author")
+    .exec()
+    .then((repleInfo) => {
+      console.log(req.body.postId);
+      return res.status(200).json({
+        success: true,
+        repleList: repleInfo,
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      return res.status(400).json({
+        success: false,
+      });
     });
 });
 module.exports = router;

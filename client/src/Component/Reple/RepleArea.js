@@ -6,7 +6,7 @@ function RepleArea(props) {
   return (
     <div>
       <RepleUpload postId={props.postId} />
-      <RepleList />
+      <RepleList postId={props.postId} />
     </div>
   );
 }
