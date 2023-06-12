@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import RepleList from "../Reple/RepleList.js";
 
 import {
   DetailDiv,
@@ -67,6 +68,7 @@ function Detail(props) {
           )}
         </DetailAnswer>
       </DetailResultDIV>
+      <RepleList></RepleList>
     </DetailDiv>
   );
 }
