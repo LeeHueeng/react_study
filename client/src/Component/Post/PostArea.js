@@ -4,7 +4,8 @@ import Spinner from "react-bootstrap/Spinner";
 import { DetailLoding } from "../../style/DetailCSS.js";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import RepleArea from "../Reple/RepleArea";
+import RepleUpload from "../Reple/RepleUpload.js";
+import RepleList from "../Reple/RepleList.js";
 function PostArea() {
   const [PostInfo, setPostInfo] = useState({});
   const [Flag, setFlag] = useState(false);
@@ -34,7 +35,8 @@ function PostArea() {
       {Flag ? (
         <>
           <Detail PostInfo={PostInfo} />
-          <RepleArea postId={PostInfo._id} />
+          <RepleUpload postId={PostInfo._id} />
+          <RepleList />
         </>
       ) : (
         <DetailLoding>
