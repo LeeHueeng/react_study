@@ -7,13 +7,14 @@ function RepleUpload(props) {
   const user = useSelector((state) => state.user);
   const SubmitHandler = (e) => {
     e.preventDefault();
+
     if (!Reple) {
       return alert("댓글을 작성해주세요.");
     }
     let body = {
       reple: Reple,
       uid: user.uid,
-      postid: props.postId,
+      postId: props.postId,
     };
 
     axios.post("/api/reple/submit", body).then((response) => {
@@ -37,6 +38,7 @@ function RepleUpload(props) {
       <button
         onClick={(e) => {
           SubmitHandler(e);
+          console.log(props.postId);
         }}
       >
         등록

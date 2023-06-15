@@ -42,7 +42,6 @@ router.post("/getReple", (req, res) => {
     .populate("author")
     .exec()
     .then((repleInfo) => {
-      console.log(req.body.postId);
       return res.status(200).json({
         success: true,
         repleList: repleInfo,
