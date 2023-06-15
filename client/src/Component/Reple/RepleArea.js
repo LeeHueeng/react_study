@@ -3,6 +3,7 @@ import RepleList from "./RepleList";
 import RepleUpload from "./RepleUpload";
 
 function RepleArea(props) {
+  console.log(props.postId);
   return (
     <div>
       <RepleUpload postId={props.postId} />
