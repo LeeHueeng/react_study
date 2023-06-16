@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import { RepleLists } from "../../style/RepleCSS.js";
 function RepleList(props) {
   const [repleList, setrepleList] = useState([]);
 
@@ -16,11 +16,11 @@ function RepleList(props) {
   }, [props.postId]);
 
   return (
-    <div>
+    <RepleLists>
       {repleList.map((reple, idx) => {
         return <div key={idx}>{reple.reple}</div>;
       })}
-    </div>
+    </RepleLists>
   );
 }
 

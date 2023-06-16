@@ -6,6 +6,7 @@ const RepleUploads = styled.div`
   margin-bottom: 3rem;
   justify-content: center;
   text-align: center;
+
   input {
     border-radius: 10px;
     width: 70%;
@@ -22,4 +23,25 @@ const RepleUploads = styled.div`
     font-size: 20px;
   }
 `;
-export { RepleUploads };
+const RepleLists = styled.div`
+  width: 100%;
+  background-color: black;
+
+  div {
+    border: 1px solid #c6c6c6;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    text-aling
+    margin-top: 10px;
+    background-color: red;
+
+
+    div{
+        background-color: red;
+    }
+  }
+`;
+export { RepleUploads, RepleLists };
