@@ -1,12 +1,12 @@
 import React from "react";
 import RepleList from "./RepleList";
 import RepleUpload from "./RepleUpload";
-
+import { useSelector } from "react-redux";
 function RepleArea(props) {
-  console.log(props.postId);
+  const user = useSelector((state) => state.user);
   return (
     <div>
-      <RepleUpload postId={props.postId} />
+      {user.accessToken && <RepleUpload postId={props.postId} />}
       <RepleList postId={props.postId} />
     </div>
   );
