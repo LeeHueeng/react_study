@@ -21,7 +21,12 @@ function RepleList(props) {
         {repleList.map((reple, idx) => {
           return (
             <div key={idx}>
-              <user>후엥</user>
+              <titles>
+                <user>{reple.author.displayName}</user>
+                <span>···</span>
+                <p>수정</p>
+                <p className="delete">삭제</p>
+              </titles>
               <br />
 
               <comment>{reple.reple}</comment>

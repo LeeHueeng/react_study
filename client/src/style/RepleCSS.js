@@ -29,13 +29,15 @@ const RepleLists = styled.div`
    
   div {
 
-
+    text-align : left;
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
     width: 80%;
     margin-top: 10px;
 
+   
+    
 
 
     div{
@@ -47,6 +49,7 @@ const RepleLists = styled.div`
         width: 80%;
         margin-top :30px;
         margin-bottom :30px;
+        
         }
     comment{
         font-weight: normal;
@@ -54,11 +57,31 @@ const RepleLists = styled.div`
         margin :10px;
         margin-bottom: 30px;
     }
-    user{
-        color: #c6c6c6;
-        font-size : 15px;
-    }  
-    
+
+    titles{
+        display: flex;
+        justify-content: space-between;
+
+        user{
+             color: #c6c6c6;
+            font-size : 15px;
+            order: 1;
+            }  
+
+        span{
+            order: 2;
+            &:hover{
+                background-color: white;
+                color:black;
+                border:1px solid black;
+                
+          }
+        p{
+            display:none;
+        }
+          
+      }
+    }
   }
 `;
 export { RepleUploads, RepleLists };
