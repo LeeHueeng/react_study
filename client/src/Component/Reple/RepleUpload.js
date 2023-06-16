@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { RepleUploads } from "../../style/RepleCSS.js";
 
 function RepleUpload(props) {
   const [Reple, setReple] = useState("");
@@ -27,7 +28,7 @@ function RepleUpload(props) {
     });
   };
   return (
-    <div>
+    <RepleUploads>
       <input
         type="text"
         value={Reple}
@@ -43,7 +44,7 @@ function RepleUpload(props) {
       >
         등록
       </button>
-    </div>
+    </RepleUploads>
   );
 }
 
