@@ -17,9 +17,18 @@ function RepleList(props) {
 
   return (
     <RepleLists>
-      {repleList.map((reple, idx) => {
-        return <div key={idx}>{reple.reple}</div>;
-      })}
+      <div class="List">
+        {repleList.map((reple, idx) => {
+          return (
+            <div key={idx}>
+              <user>후엥</user>
+              <br />
+
+              <comment>{reple.reple}</comment>
+            </div>
+          );
+        })}
+      </div>
     </RepleLists>
   );
 }

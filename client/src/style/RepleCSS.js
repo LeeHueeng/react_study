@@ -9,7 +9,7 @@ const RepleUploads = styled.div`
 
   input {
     border-radius: 10px;
-    width: 70%;
+    width: 60%;
     height: 40px;
     margin-right: 20px;
     border: 1px solid #c6c6c6;
@@ -25,23 +25,40 @@ const RepleUploads = styled.div`
 `;
 const RepleLists = styled.div`
   width: 100%;
-  background-color: black;
 
+   
   div {
-    border: 1px solid #c6c6c6;
-    border-radius: 10px;
+
+
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
     width: 80%;
-    text-aling
     margin-top: 10px;
-    background-color: red;
+
 
 
     div{
-        background-color: red;
+        border-radius: 5px;
+        padding : 20px;
+        mar
+        border: 1px solid #c6c6c6;
+        box-shadow: 5px 5px 5px 5px gray;
+        width: 80%;
+        margin-top :30px;
+        margin-bottom :30px;
+        }
+    comment{
+        font-weight: normal;
+        font-size : 20px;
+        margin :10px;
+        margin-bottom: 30px;
     }
+    user{
+        color: #c6c6c6;
+        font-size : 15px;
+    }  
+    
   }
 `;
 export { RepleUploads, RepleLists };
