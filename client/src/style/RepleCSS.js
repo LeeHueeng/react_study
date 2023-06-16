@@ -73,14 +73,30 @@ const RepleLists = styled.div`
             &:hover{
                 background-color: white;
                 color:black;
-                border:1px solid black;
+                .hidden{
+                
+                  display:block;
+                  margin : 0px;
+                  padding: 0px;
+                  box-shadow: 0px 0px 0px 0px gray;
+                  width : 60px;
+                  text-align: center;
+                  p{
+                    font-size: 20px;
+                    border-radius: 5px;
+                    margin: 2px;
+                    border: 1px solid #c6c6c6;
+                  }
+                }
                 
           }
-        p{
-            display:none;
-        }
+       
           
       }
+    
+    }
+    .hidden{
+      display: none;
     }
   }
 `;

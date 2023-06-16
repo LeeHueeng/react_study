@@ -23,10 +23,15 @@ function RepleList(props) {
             <div key={idx}>
               <titles>
                 <user>{reple.author.displayName}</user>
-                <span>···</span>
-                <p>수정</p>
-                <p className="delete">삭제</p>
+                <span>
+                  ···
+                  <div className="hidden">
+                    <p>수정</p>
+                    <p className="delete">삭제</p>
+                  </div>
+                </span>
               </titles>
+
               <br />
 
               <comment>{reple.reple}</comment>
