@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 function RepleContent(props) {
   const [ModalFlag, setModalFlag] = useState(false);
+  const ref = useRef();
+
   return (
     <div>
       <dix>
