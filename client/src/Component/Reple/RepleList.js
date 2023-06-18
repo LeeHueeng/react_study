@@ -23,19 +23,19 @@ function RepleList(props) {
             <div class="author">
               <div className="userInfo">
                 <p>{reple.author.displayName}</p>
+                <comment>{reple.reple}</comment>
               </div>
-            </div>
-            <div className="modalControl">
-              <span>···</span>
-              <div className="modalDiv">
-                <p>수정</p>
-                <p className="delete">삭제</p>
+
+              <div className="modalControl">
+                <span>···</span>
+                <div className="modalDiv">
+                  <p>수정</p>
+                  <p className="delete">삭제</p>
+                </div>
               </div>
+
+              <br />
             </div>
-
-            <br />
-
-            <comment>{reple.reple}</comment>
           </div>
         );
       })}

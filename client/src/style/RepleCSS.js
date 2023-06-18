@@ -24,62 +24,65 @@ const RepleUploads = styled.div`
   }
 `;
 const RepleLists = styled.div`
-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.03), 0px 7.5px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.03), 0px 7.5px 6px rgba(0, 0, 0, 0.1);
   padding: 20px 10px;
+  border: 1px solid gray;
   margin-bottom: 10px;
+
   .author {
     display: flex;
-    margin-bottom: 5px;
-    justify-content: space-between;
-    align-items: center;
-    .userInfo {
-      display: flex;
-      align-items: center;
-      color : #808080;
-      p {
-        font-size: 12px;
-        font-weight: bold;
-        color: darkgrey;
-        margin-left: 10px;
-      }
-    }
-    
+    border: 1px solid gray;
+    min-height: 85px;
+    border-radius: 5px;
+    margin-bottom:10px;
+    padding : 5px;
+  }
+  .userInfo {
+  
+    color: gray;
+    font-size: 8px;
+    margin-right: auto;
+    width:100%;
+  }
+  span {
+    margin: auto;
+
+
   }
   .modalControl {
-    cursor: pointer;
-    position: relative;
-    span {
-      user-select: none;
-    }
-    .modalDiv {
-      position: absolute;
-      top: 15px;
-      right: 10px;
-      width: 80px;
-      height: 60px;
-      overflow: hidden;
-      padding: 10px;
-      cursor: auto;
-      display: flex;
-      flex-direction: column;
-      align-content: center;
-      justify-content: space-between;
-      align-items: center;
+    text-align: end;
 
-      background-color: whitesmoke;
-      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.03),
-        0px 7.5px 6px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      p {
-        color: black;
-        margin-bottom: 0px;
-        cursor: pointer;
-        &.delete {
-          color: red;
-        }
+    padding: 0px;
+    width:45px;
+  
+
+    p{
+      margin: 0px 5px 0px;
+    }
+   
+    &:hover,
+    &:active {
+
+      .modalDiv {
+        display: block;
       }
     }
   }
-}
+  .modalDiv {
+    text-align: center;
+    display: none;
+    
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-size: 15px;
+    .delete{
+      color :red;
+    }
+    
+    
+  }
+  comment {
+    color: black;
+    font-size: 20px;
 `;
 export { RepleUploads, RepleLists };
