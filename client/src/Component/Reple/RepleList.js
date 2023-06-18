@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { RepleLists } from "../../style/RepleCSS.js";
+import RepleContent from "./RepleContent.js";
 function RepleList(props) {
   const [repleList, setrepleList] = useState([]);
 
@@ -18,26 +19,7 @@ function RepleList(props) {
   return (
     <RepleLists>
       {repleList.map((reple, idx) => {
-        return (
-          <div key={idx}>
-            <div class="author">
-              <div className="userInfo">
-                <p>{reple.author.displayName}</p>
-                <comment>{reple.reple}</comment>
-              </div>
-
-              <div className="modalControl">
-                <span>···</span>
-                <div className="modalDiv">
-                  <p>수정</p>
-                  <p className="delete">삭제</p>
-                </div>
-              </div>
-
-              <br />
-            </div>
-          </div>
-        );
+        return <RepleContent reple={reple} key={idx} />;
       })}
     </RepleLists>
   );

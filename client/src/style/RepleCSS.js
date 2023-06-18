@@ -63,22 +63,19 @@ const RepleLists = styled.div`
     &:hover,
     &:active {
 
-      .modalDiv {
-        display: block;
-      }
+
     }
   }
   .modalDiv {
     text-align: center;
-    display: none;
-    
+
     border-radius: 5px;
     border: 1px solid gray;
     font-size: 15px;
     .delete{
       color :red;
     }
-    
+
     
   }
   comment {
