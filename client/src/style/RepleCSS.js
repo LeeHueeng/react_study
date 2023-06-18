@@ -24,80 +24,62 @@ const RepleUploads = styled.div`
   }
 `;
 const RepleLists = styled.div`
-  width: 100%;
-
-   
-  div {
-
-    text-align : left;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-    margin-top: 10px;
-
-   
-    
-
-
-    div{
-        border-radius: 5px;
-        padding : 20px;
-        mar
-        border: 1px solid #c6c6c6;
-        box-shadow: 5px 5px 5px 5px gray;
-        width: 80%;
-        margin-top :30px;
-        margin-bottom :30px;
-        
-        }
-    comment{
-        font-weight: normal;
-        font-size : 20px;
-        margin :10px;
-        margin-bottom: 30px;
-    }
-
-    titles{
-        display: flex;
-        justify-content: space-between;
-
-        user{
-             color: #c6c6c6;
-            font-size : 15px;
-            order: 1;
-            }  
-
-        span{
-            order: 2;
-            &:hover{
-                background-color: white;
-                color:black;
-                .hidden{
-                
-                  display:block;
-                  margin : 0px;
-                  padding: 0px;
-                  box-shadow: 0px 0px 0px 0px gray;
-                  width : 60px;
-                  text-align: center;
-                  p{
-                    font-size: 20px;
-                    border-radius: 5px;
-                    margin: 2px;
-                    border: 1px solid #c6c6c6;
-                  }
-                }
-                
-          }
-       
-          
+box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.03), 0px 7.5px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px 10px;
+  margin-bottom: 10px;
+  .author {
+    display: flex;
+    margin-bottom: 5px;
+    justify-content: space-between;
+    align-items: center;
+    .userInfo {
+      display: flex;
+      align-items: center;
+      color : #808080;
+      p {
+        font-size: 12px;
+        font-weight: bold;
+        color: darkgrey;
+        margin-left: 10px;
       }
-    
     }
-    .hidden{
-      display: none;
+    
+  }
+  .modalControl {
+    cursor: pointer;
+    position: relative;
+    span {
+      user-select: none;
+    }
+    .modalDiv {
+      position: absolute;
+      top: 15px;
+      right: 10px;
+      width: 80px;
+      height: 60px;
+      overflow: hidden;
+      padding: 10px;
+      cursor: auto;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      justify-content: space-between;
+      align-items: center;
+
+      background-color: whitesmoke;
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.03),
+        0px 7.5px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      p {
+        color: black;
+        margin-bottom: 0px;
+        cursor: pointer;
+        &.delete {
+          color: red;
+        }
+      }
     }
   }
+}
 `;
 export { RepleUploads, RepleLists };

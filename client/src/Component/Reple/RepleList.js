@@ -17,28 +17,28 @@ function RepleList(props) {
 
   return (
     <RepleLists>
-      <div class="List">
-        {repleList.map((reple, idx) => {
-          return (
-            <div key={idx}>
-              <titles>
-                <user>{reple.author.displayName}</user>
-                <span>
-                  ···
-                  <div className="hidden">
-                    <p>수정</p>
-                    <p className="delete">삭제</p>
-                  </div>
-                </span>
-              </titles>
-
-              <br />
-
-              <comment>{reple.reple}</comment>
+      {repleList.map((reple, idx) => {
+        return (
+          <div key={idx}>
+            <div class="author">
+              <div className="userInfo">
+                <p>{reple.author.displayName}</p>
+              </div>
             </div>
-          );
-        })}
-      </div>
+            <div className="modalControl">
+              <span>···</span>
+              <div className="modalDiv">
+                <p>수정</p>
+                <p className="delete">삭제</p>
+              </div>
+            </div>
+
+            <br />
+
+            <comment>{reple.reple}</comment>
+          </div>
+        );
+      })}
     </RepleLists>
   );
 }
