@@ -9,6 +9,7 @@ function RepleContent(props) {
   const [Reple, setReple] = useState(props.reple.reple);
   const ref = useRef();
   const user = useSelector((state) => state.user);
+
   useOnClickOutside(ref, () => setModalFlag(false));
 
   const SubmitHandler = (e) => {
@@ -27,6 +28,28 @@ function RepleContent(props) {
       }
       return window.location.reload();
     });
+  };
+
+  const DeliteHandler = (e) => {
+    e.preventDefault();
+    if (window.confirm("정말로 삭제하겠습니까?")) {
+      let body = {
+        repleId: props.reple._id,
+        postId: props.reple.postId,
+      };
+
+      axios
+        .post("/api/reple/delete", body)
+        .then((response) => {
+          if (response.data.success) {
+            alert("댓글이 삭제되었습니다.");
+            return window.location.reload();
+          }
+        })
+        .catch((err) => {
+          alert("댓글 삭제에 실패하였습니다.");
+        });
+    }
   };
 
   return (
@@ -79,7 +102,9 @@ function RepleContent(props) {
                   >
                     수정
                   </p>
-                  <p className="delete">삭제</p>
+                  <p className="delete" onClick={(e) => DeliteHandler(e)}>
+                    삭제
+                  </p>
                 </div>
               )}
             </div>
