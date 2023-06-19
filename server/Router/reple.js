@@ -54,4 +54,25 @@ router.post("/getReple", (req, res) => {
       });
     });
 });
+
+router.post("/edit", (req, res) => {
+  let temp = {
+    postId: req.body.postId,
+    reple: req.body.reple,
+    uid: req.body.uid,
+  };
+  Reple.findOneAndUpdate({ _id: req.body.repleId }, { $set: temp })
+    .exec()
+    .then(() => {
+      return res.status(200).json({
+        success: true,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(400).json({
+        success: false,
+      });
+    });
+});
 module.exports = router;

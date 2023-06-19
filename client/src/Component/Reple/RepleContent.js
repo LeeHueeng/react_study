@@ -1,15 +1,33 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { RepleUploads } from "../../style/RepleCSS.js";
+import axios from "axios";
+
 function RepleContent(props) {
   const [ModalFlag, setModalFlag] = useState(false);
   const [EdifFlag, setEdifFlag] = useState(false);
-  const [Reple, setReple] = useState("");
+  const [Reple, setReple] = useState(props.reple.reple);
   const ref = useRef();
   const user = useSelector((state) => state.user);
   useOnClickOutside(ref, () => setModalFlag(false));
 
-  const SubmitHandler = () => {};
+  const SubmitHandler = (e) => {
+    e.preventDefault();
+    let body = {
+      uid: user.uid,
+      reple: Reple,
+      postId: props.reple.postId,
+      repleId: props.reple._id,
+    };
+    axios.post("/api/reple/edit", body).then((response) => {
+      if (response.data.success) {
+        alert("댓글 수정이 성공하였습니다.");
+      } else {
+        alert("댓글 수정이 실패하였습니다.");
+      }
+      return window.location.reload();
+    });
+  };
 
   return (
     <div>
