@@ -2,7 +2,6 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import RepleArea from "../Reple/RepleArea.js";
 
 import {
   DetailDiv,
