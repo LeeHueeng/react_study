@@ -12,9 +12,20 @@ function Register() {
   const [PWConfirm, setPWConfirm] = useState("");
   const [Flag, setFlag] = useState(false);
   const [NameList, setNameList] = useState([]);
-  const [Chack, setChack] = useState(0);
+  const [NickNameChack, setNickNameChack] = useState(0);
+  const [EmailList, setEmailList] = useState([]);
+  const [EmailChack, setEmailChack] = useState(0);
 
-  const isNicknameTaken = async (e, Chack) => {
+  function isValidEmail(Email) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (emailRegex.test(Email)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  const isNicknameTaken = async (e) => {
     e.preventDefault();
 
     axios
@@ -24,14 +35,17 @@ function Register() {
           const nameList = response.data.NameList;
           setNameList(nameList);
           const duplicateNames = getDuplicateNames(nameList);
+          if (!Name) {
+            return alert("닉네임을 채워주세요");
+          }
           if (duplicateNames.length > 0) {
             alert("중복된 닉네임이 있습니다.");
-            setChack(0);
-            console.log(Chack);
+            setNickNameChack(0);
+            console.log(NickNameChack);
           } else {
             alert("닉네임 사용이 가능합니다.");
-            setChack(1);
-            console.log(Chack);
+            setNickNameChack(1);
+            console.log(NickNameChack);
           }
         }
       })
@@ -40,6 +54,53 @@ function Register() {
         console.log(err);
       });
   };
+
+  const isEmailTaken = async (e) => {
+    e.preventDefault();
+
+    axios
+      .post("/api/user/EmailList")
+      .then((response) => {
+        if (response.data.success) {
+          const emailList = response.data.EmailList;
+          setEmailList(emailList);
+          const duplicateEmails = getDuplicateEmails(emailList);
+
+          if (!Email) {
+            return alert("이메일을 채워주세요");
+          }
+          if (isValidEmail(Email)) {
+            return alert("이메일이 아닙니다.");
+          }
+          if (duplicateEmails.length > 0) {
+            alert("중복된 이메일이 있습니다.");
+            setEmailChack(0);
+            console.log(EmailChack);
+          } else {
+            alert("이메일 사용이 가능합니다.");
+            setEmailChack(1);
+            console.log(EmailChack);
+          }
+        }
+      })
+
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  function getDuplicateEmails(emailList) {
+    const duplicateEmails = [];
+
+    for (let i = 0; i < emailList.length; i++) {
+      const email = emailList[i].displayName;
+      if (email === Email && !duplicateEmails.includes(Email)) {
+        duplicateEmails.push(Email);
+      }
+    }
+
+    return duplicateEmails;
+  }
 
   function getDuplicateNames(nameList) {
     const duplicateNames = [];
@@ -66,7 +127,7 @@ function Register() {
     if (PW.length < 6) {
       return alert("비밀번호를 6자리 이상 해주세요!");
     }
-    if (Chack === 0) {
+    if (NickNameChack === 0) {
       return alert("닉네임 중복검사를 해주세요!");
     }
 
@@ -103,13 +164,14 @@ function Register() {
           value={Name}
           onChange={(e) => setName(e.currentTarget.value)}
         />
-        <button onClick={(e) => isNicknameTaken(e)}>중복 체크</button>
+        <button onClick={(e) => isNicknameTaken(e)}>닉네임 중복 체크</button>
         <lable>이메일</lable>
         <input
           type="email"
           value={Email}
           onChange={(e) => setEmail(e.currentTarget.value)}
         />
+        <button onClick={(e) => isEmailTaken(e)}>이메일 중복 체크</button>
         <lable>비밀번호</lable>
         <input
           type="password"

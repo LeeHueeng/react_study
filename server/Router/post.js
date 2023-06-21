@@ -15,7 +15,7 @@ router.post("/submit", (req, res) => {
   Counter.findOne({ name: "counter" })
     .exec()
     .then((counter) => {
-      temp.postNum = counter.postNum;
+      temp.postNum = counter ? counter.postNum : 0;
       User.findOne({ uid: req.body.uid })
         .exec()
         .then((UserInfo) => {
