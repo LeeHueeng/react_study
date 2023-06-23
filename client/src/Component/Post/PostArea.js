@@ -27,9 +27,7 @@ function PostArea() {
         console.log(err);
       });
   }, [params.postNum]);
-  useEffect(() => {
-    console.log(PostInfo);
-  }, [PostInfo]);
+  console.log("postinfo", PostInfo);
   return (
     <div>
       {Flag ? (
