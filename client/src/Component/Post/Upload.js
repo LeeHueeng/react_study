@@ -7,6 +7,7 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ImageUpload from "./ImageUpload.js";
+import Filter from "../../badwords/Filter.js";
 
 import { useSelector } from "react-redux";
 
@@ -23,6 +24,12 @@ function Upload(props) {
       navigate("/login");
     }
   });
+  const filteredContent = Filter(Content);
+
+  const clearcontent = () => {
+    setContent(filteredContent || "");
+    console.log(filteredContent);
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -77,6 +84,7 @@ function Upload(props) {
           <button
             onClick={(e) => {
               onSubmit(e);
+              clearcontent();
             }}
           >
             제출!
