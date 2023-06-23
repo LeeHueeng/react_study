@@ -11,6 +11,10 @@ const repleSchema = new mongoose.Schema(
     postId: {
       type: mongoose.Schema.Types.ObjectId,
     },
+    page: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Post",
+    },
   },
   { collection: "reples" }
 );
