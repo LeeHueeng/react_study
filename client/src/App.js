@@ -11,7 +11,6 @@ import Edit from "./Component/Post/Edit";
 import Login from "./Component/User/Login";
 import Register from "./Component/User/Register";
 import ChannelService from "./Component/User/ChannelService.js";
-import UserPage from "./Component/User/UserPage";
 
 function App() {
   ChannelService.loadScript();
@@ -34,8 +33,8 @@ function App() {
       <BrowserRouter>
         <Heading />
         <Routes>
-          <Route path="/" element={<List />} />
-          <Route path="/:userNum" element={<UserPage />} />
+          <Route path="/list/:userNum" element={<List />} />
+
           <Route path="/upload" element={<Upload />} />
           <Route path="/post/:userNum/:postNum" element={<PostArea />} />
           <Route path="/edit/:userNum/:postNum" element={<Edit />} />
