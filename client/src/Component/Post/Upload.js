@@ -11,18 +11,14 @@ import ImageUpload from "./ImageUpload.js";
 import { useSelector } from "react-redux";
 
 function Upload(props) {
+  const [PW, setPW] = useState("");
   const user = useSelector((state) => state.user);
   const [Title, setTitle] = useState("");
   const [Content, setContent] = useState("");
   let navigate = useNavigate();
   const [Image, setImage] = useState("");
-
-  useEffect(() => {
-    if (!user.accessToken) {
-      alert("로그인한 회원만 글을 작성 할 수 있습니다.");
-      navigate("/login");
-    }
-  });
+  const pathname = window.location.pathname;
+  const userPage = pathname.split("/")[2];
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +31,7 @@ function Upload(props) {
       content: Content,
       image: Image,
       uid: user.uid,
+      userpage: userPage,
     };
 
     axios
@@ -66,6 +63,7 @@ function Upload(props) {
           }}
         />
         <ImageUpload setImage={setImage}></ImageUpload>
+
         <label htmlFor="content">내용</label>
         <textarea
           value={Content}
@@ -74,6 +72,22 @@ function Upload(props) {
           }}
         />
         <UploadButtonDiv>
+          <lable>닉네임</lable>
+          <input
+            id="title"
+            type="text"
+            value={Title}
+            onChange={(event) => {
+              setTitle(event.currentTarget.value);
+            }}
+          />
+          <lable>비밀번호</lable>
+          <input
+            type="password"
+            value={PW}
+            minLength={8}
+            onChange={(e) => setPW(e.currentTarget.value)}
+          />
           <button
             onClick={(e) => {
               onSubmit(e);

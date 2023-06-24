@@ -33,11 +33,11 @@ function App() {
       <BrowserRouter>
         <Heading />
         <Routes>
-          <Route path="/list/:userNum" element={<List />} />
+          <Route path="/list/:userPage" element={<List />} />
 
-          <Route path="/upload" element={<Upload />} />
-          <Route path="/post/:userNum/:postNum" element={<PostArea />} />
-          <Route path="/edit/:userNum/:postNum" element={<Edit />} />
+          <Route path="/upload/:userPage" element={<Upload />} />
+          <Route path="/post/:userPage/:postNum" element={<PostArea />} />
+          <Route path="/edit/:userPage/:postNum" element={<Edit />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>

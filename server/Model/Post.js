@@ -7,6 +7,7 @@ const postSchema = new mongoose.Schema(
     postNum: Number,
     page: Number,
     image: String,
+    userpage: Number,
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

@@ -11,7 +11,9 @@ router.post("/submit", (req, res) => {
     title: req.body.title,
     content: req.body.content,
     image: req.body.image,
+    userPage: req.body.userpage,
   };
+  console.log(temp);
   Counter.findOne({ name: "counter" })
     .exec()
     .then((counter) => {
