@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   UploadDiv,
   UploadForm,
@@ -8,15 +8,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ImageUpload from "./ImageUpload.js";
 
-import { useSelector } from "react-redux";
-
 function Upload(props) {
   const [PW, setPW] = useState("");
-  const user = useSelector((state) => state.user);
+
   const [Title, setTitle] = useState("");
   const [Content, setContent] = useState("");
   let navigate = useNavigate();
   const [Image, setImage] = useState("");
+  const [Name, setName] = useState("");
   const pathname = window.location.pathname;
   const userPage = pathname.split("/")[2];
 
@@ -30,8 +29,9 @@ function Upload(props) {
       title: Title,
       content: Content,
       image: Image,
-      uid: user.uid,
+      name: Name,
       userpage: userPage,
+      PW: PW,
     };
 
     axios
@@ -74,18 +74,17 @@ function Upload(props) {
         <UploadButtonDiv>
           <lable>닉네임</lable>
           <input
-            id="title"
+            id="name"
             type="text"
-            value={Title}
+            value={Name}
             onChange={(event) => {
-              setTitle(event.currentTarget.value);
+              setName(event.currentTarget.value);
             }}
           />
           <lable>비밀번호</lable>
           <input
             type="password"
             value={PW}
-            minLength={8}
             onChange={(e) => setPW(e.currentTarget.value)}
           />
           <button
