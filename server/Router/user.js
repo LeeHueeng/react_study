@@ -55,4 +55,25 @@ router.post("/EmailList", (req, res) => {
     });
 });
 
+router.post("/getUserNum", (req, res) => {
+  console.log("UserNumreq");
+  User.findOne({ email: userEmail }) // 이메일로 사용자 조회
+    .select("userNum") // userNum 필드만 선택
+    .exec()
+    .then((user) => {
+      if (!user) {
+        // 사용자가 없을 경우
+        res.status(404).json({ success: false, message: "User not found" });
+      } else {
+        const userNum = user.userNum; // 사용자의 userNum 값
+        res.status(200).json({ success: true, userNum });
+      }
+    })
+    .catch((err) => {
+      console.log("Error:", err);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    });
+});
 module.exports = router;

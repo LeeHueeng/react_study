@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginDiv from "../../style/UserCSS";
-
+import { useDispatch } from "react-redux";
 import firebase from "../../firebase.js";
+import { loginUser } from "../../Reducer/userSlice.js";
+import axios from "axios";
 
 function Login() {
   const [Email, setEmail] = useState("");
   const [PW, setPW] = useState("");
   const [ErrorMsg, setErrorMsg] = useState("");
   let navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const SingInFunc = async (e) => {
     e.preventDefault();
@@ -17,6 +21,23 @@ function Login() {
     }
     try {
       await firebase.auth().signInWithEmailAndPassword(Email, PW);
+      const user = firebase.auth().currentUser;
+      const userEmail = user.email;
+
+      const response = await axios.post("/api/user/getUserNum", {
+        email: userEmail,
+      });
+      const userNum = response.data.userNum;
+
+      dispatch(
+        loginUser({
+          displayName: user.displayName,
+          uid: user.uid,
+          accessToken: user.accessToken,
+          userNum: userNum,
+        })
+      );
+
       navigate("/");
     } catch (error) {
       if (error.code === "auth/user-not-found") {
