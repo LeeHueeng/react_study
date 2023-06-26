@@ -130,6 +130,9 @@ function Register() {
     if (NickNameChack === 0) {
       return alert("닉네임 중복검사를 해주세요!");
     }
+    if (EmailChack === 0) {
+      return alert("이메일 중복검사를 해주세요!");
+    }
 
     let createdUser = await firebase
       .auth()

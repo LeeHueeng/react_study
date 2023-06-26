@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -9,7 +9,13 @@ import firebase from "../firebase.js";
 
 function Heading() {
   const user = useSelector((state) => state.user);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("user", user); // user 상태 변화를 확인하기 위한 로그
+  }, [user]);
+
   const LogoutHandler = () => {
     firebase.auth().signOut();
     navigate("/");
@@ -22,7 +28,7 @@ function Heading() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Link
-              to="/"
+              to={`/list/${user.userNum}`}
               style={{
                 color: "white",
                 textDecoration: "none",

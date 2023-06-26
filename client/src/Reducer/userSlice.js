@@ -6,17 +6,20 @@ export const userSlice = createSlice({
     displayName: "",
     uid: "",
     accessToken: "",
+    userNum: null,
   },
   reducers: {
     loginUser: (state, action) => {
       state.displayName = action.payload.displayName;
       state.uid = action.payload.uid;
       state.accessToken = action.payload.accessToken;
+      state.userNum = action.payload.userNum;
     },
     clearUser: (state) => {
       state.displayName = "";
       state.uid = "";
       state.accessToken = "";
+      state.userNum = null;
     },
   },
 });
