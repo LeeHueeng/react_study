@@ -18,7 +18,7 @@ function List(props) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [userPage]);
 
   return (
     <ListDiv>
