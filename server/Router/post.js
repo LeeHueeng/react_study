@@ -37,7 +37,9 @@ router.post("/submit", (req, res) => {
 });
 router.post("/list", (req, res) => {
   console.log("요청이 들어왔습니다.");
-  Post.find({ name: "displayname" })
+  const userPage = Number(req.body.userPage);
+  console.log(userPage);
+  Post.find({ userPage: userPage })
     .exec()
     .then((doc) => {
       console.log("데이터 조회 결과:", doc);
