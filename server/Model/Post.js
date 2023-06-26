@@ -7,11 +7,10 @@ const postSchema = new mongoose.Schema(
     postNum: Number,
     page: Number,
     image: String,
-    userpage: Number,
-    author: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
+    userPage: Number,
+    PW: String,
+    displayname: String,
+
     repleNum: {
       type: Number,
       default: 0,

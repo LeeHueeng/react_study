@@ -12,6 +12,8 @@ router.post("/submit", (req, res) => {
     content: req.body.content,
     image: req.body.image,
     userPage: req.body.userpage,
+    displayname: req.body.name,
+    PW: req.body.PW,
   };
   console.log(temp);
   Counter.findOne({ name: "counter" })
@@ -20,8 +22,8 @@ router.post("/submit", (req, res) => {
       temp.postNum = counter ? counter.postNum : 0;
       User.findOne({ uid: req.body.uid })
         .exec()
-        .then((UserInfo) => {
-          temp.author = UserInfo._id;
+        .then((displayname) => {
+          temp.author = displayname;
           const CommunityPost = new Post(temp);
           CommunityPost.save().then(() => {
             Counter.updateOne(
@@ -40,12 +42,11 @@ router.post("/submit", (req, res) => {
 });
 router.post("/list", (req, res) => {
   console.log("요청이 들어왔습니다.");
-  Post.find()
-    .populate("author")
+  Post.find({ name: "displayname" })
     .exec()
-    .then((doc) => {
-      console.log("데이터 조회 결과:", doc);
-      res.status(200).json({ success: true, postList: doc });
+    .then((displayname) => {
+      console.log("데이터 조회 결과:", displayname);
+      res.status(200).json({ success: true, postList: displayname });
     })
     .catch((err) => {
       console.log("오류 발생:", err);
