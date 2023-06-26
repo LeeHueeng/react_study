@@ -20,7 +20,6 @@ function List(props) {
 
   return (
     <ListDiv>
-      console.log(userNum)
       {PostList.map((post, idx) => {
         return (
           <ListItem key={idx}>

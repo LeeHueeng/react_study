@@ -20,21 +20,16 @@ router.post("/submit", (req, res) => {
     .exec()
     .then((counter) => {
       temp.postNum = counter ? counter.postNum : 0;
-      User.findOne({ uid: req.body.uid })
-        .exec()
-        .then((displayname) => {
-          temp.author = displayname;
-          const CommunityPost = new Post(temp);
-          CommunityPost.save().then(() => {
-            Counter.updateOne(
-              { name: "counter" },
-              { $inc: { postNum: 1 } }
-            ).then(() => {
-              res.status(200).json({ success: true });
-            });
-          });
-        });
+      const CommunityPost = new Post(temp);
+      CommunityPost.save().then(() => {
+        Counter.updateOne({ name: "counter" }, { $inc: { postNum: 1 } }).then(
+          () => {
+            res.status(200).json({ success: true });
+          }
+        );
+      });
     })
+
     .catch((err) => {
       console.log(err);
       res.status(400).json({ success: false });
@@ -44,9 +39,9 @@ router.post("/list", (req, res) => {
   console.log("요청이 들어왔습니다.");
   Post.find({ name: "displayname" })
     .exec()
-    .then((displayname) => {
-      console.log("데이터 조회 결과:", displayname);
-      res.status(200).json({ success: true, postList: displayname });
+    .then((doc) => {
+      console.log("데이터 조회 결과:", doc);
+      res.status(200).json({ success: true, postList: doc });
     })
     .catch((err) => {
       console.log("오류 발생:", err);
