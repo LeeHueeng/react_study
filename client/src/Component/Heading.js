@@ -13,7 +13,7 @@ function Heading() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("user", user); // user 상태 변화를 확인하기 위한 로그
+    console.log("user", user);
   }, [user]);
 
   const LogoutHandler = () => {

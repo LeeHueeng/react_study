@@ -46,11 +46,9 @@ router.post("/EmailList", (req, res) => {
     .select("email")
     .exec()
     .then((doc) => {
-      console.log("데이터 조회 결과:", doc);
       res.status(200).json({ success: true, EmailList: doc });
     })
     .catch((err) => {
-      console.log("오류 발생:", err);
       res.status(400).json({ success: false });
     });
 });

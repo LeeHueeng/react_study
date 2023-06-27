@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LoginDiv from "../../style/UserCSS";
 import firebase from "../../firebase";
 import axios from "axios";
@@ -13,8 +13,14 @@ function Register() {
   const [Flag, setFlag] = useState(false);
   const [NameList, setNameList] = useState([]);
   const [NickNameChack, setNickNameChack] = useState(0);
-  const [EmailList, setEmailList] = useState([]);
+  const [EmaListil, setEmailList] = useState([]);
   const [EmailChack, setEmailChack] = useState(0);
+  useEffect(() => {
+    console.log("EmailChack 변경됨:", EmailChack);
+  }, [EmailChack]);
+  useEffect(() => {
+    console.log("NickNameChack 변경됨:", NickNameChack);
+  }, [NickNameChack]);
 
   function isValidEmail(Email) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -54,39 +60,45 @@ function Register() {
 
   const isEmailTaken = async (e) => {
     e.preventDefault();
+    axios
+      .post("/api/user/EmailList")
+      .then((response) => {
+        if (response.data.success) {
+          const emailList = response.data.EmailList;
 
-    try {
-      const response = await axios.post("/api/user/EmailList");
-      if (response.data.success) {
-        const emailList = response.data.EmailList;
-        setEmailList(emailList);
-        const duplicateEmails = getDuplicateEmails(emailList);
+          setEmailList(emailList);
+          const duplicateEmails = getDuplicateEmails(emailList);
 
-        if (!Email) {
-          return alert("이메일을 채워주세요");
-        }
-        if (isValidEmail(Email)) {
-          return alert("이메일이 아닙니다.");
-        }
-        if (duplicateEmails.length > 0) {
-          alert("중복된 이메일이 있습니다.");
-          setEmailChack(0);
-          console.log(EmailChack);
+          if (!Email) {
+            return alert("이메일을 채워주세요");
+          }
+          if (isValidEmail(Email)) {
+            return alert("이메일이 아닙니다.");
+          }
+          if (duplicateEmails.length > 0) {
+            alert("중복된 이메일이 있습니다.");
+            setEmailChack(0);
+            console.log(EmailChack);
+          } else {
+            alert("이메일 사용이 가능합니다.");
+            setEmailChack(1);
+            console.log(EmailChack);
+          }
         } else {
-          alert("이메일 사용이 가능합니다.");
-          setEmailChack(1);
-          console.log(EmailChack);
+          // 유효한 배열이 아닌 경우에 대한 처리
+          console.log("Invalid emailList:", response);
+          // 오류 처리 또는 기본값 설정 등을 수행
         }
-      }
-    } catch (err) {
-      console.log(err);
-    }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   function getDuplicateEmails(emailList) {
     const duplicateEmails = [];
 
     for (let i = 0; i < emailList.length; i++) {
-      const email = emailList[i].displayName;
+      const email = emailList[i].email;
       if (email === Email && !duplicateEmails.includes(Email)) {
         duplicateEmails.push(Email);
       }
