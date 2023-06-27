@@ -27,27 +27,33 @@ function Heading() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link
-              to={`/list/${user.userNum}`}
-              style={{
-                color: "white",
-                textDecoration: "none",
-                marginRight: "10px",
-              }}
-            >
-              home
-            </Link>
+            {user.accessToken === "" ? (
+              <div></div>
+            ) : (
+              <div>
+                <Link
+                  to={`/list/${user.userNum}`}
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    marginRight: "10px",
+                  }}
+                >
+                  home
+                </Link>
 
-            <Link
-              to="/upload"
-              style={{
-                color: "white",
-                textDecoration: "none",
-                marginRight: "10px",
-              }}
-            >
-              upload
-            </Link>
+                <Link
+                  to="/upload"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    marginRight: "10px",
+                  }}
+                >
+                  upload
+                </Link>
+              </div>
+            )}
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">

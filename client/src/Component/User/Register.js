@@ -28,67 +28,60 @@ function Register() {
   const isNicknameTaken = async (e) => {
     e.preventDefault();
 
-    axios
-      .post("/api/user/NameList")
-      .then((response) => {
-        if (response.data.success) {
-          const nameList = response.data.NameList;
-          setNameList(nameList);
-          const duplicateNames = getDuplicateNames(nameList);
-          if (!Name) {
-            return alert("닉네임을 채워주세요");
-          }
-          if (duplicateNames.length > 0) {
-            alert("중복된 닉네임이 있습니다.");
-            setNickNameChack(0);
-            console.log(NickNameChack);
-          } else {
-            alert("닉네임 사용이 가능합니다.");
-            setNickNameChack(1);
-            console.log(NickNameChack);
-          }
+    try {
+      const response = await axios.post("/api/user/NameList");
+      if (response.data.success) {
+        const nameList = response.data.NameList;
+        setNameList(nameList);
+        const duplicateNames = getDuplicateNames(nameList);
+        if (!Name) {
+          return alert("닉네임을 채워주세요");
         }
-      })
-
-      .catch((err) => {
-        console.log(err);
-      });
+        if (duplicateNames.length > 0) {
+          alert("중복된 닉네임이 있습니다.");
+          setNickNameChack(0);
+          console.log(NickNameChack);
+        } else {
+          alert("닉네임 사용이 가능합니다.");
+          setNickNameChack(1);
+          console.log(NickNameChack);
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const isEmailTaken = async (e) => {
     e.preventDefault();
 
-    axios
-      .post("/api/user/EmailList")
-      .then((response) => {
-        if (response.data.success) {
-          const emailList = response.data.EmailList;
-          setEmailList(emailList);
-          const duplicateEmails = getDuplicateEmails(emailList);
+    try {
+      const response = await axios.post("/api/user/EmailList");
+      if (response.data.success) {
+        const emailList = response.data.EmailList;
+        setEmailList(emailList);
+        const duplicateEmails = getDuplicateEmails(emailList);
 
-          if (!Email) {
-            return alert("이메일을 채워주세요");
-          }
-          if (isValidEmail(Email)) {
-            return alert("이메일이 아닙니다.");
-          }
-          if (duplicateEmails.length > 0) {
-            alert("중복된 이메일이 있습니다.");
-            setEmailChack(0);
-            console.log(EmailChack);
-          } else {
-            alert("이메일 사용이 가능합니다.");
-            setEmailChack(1);
-            console.log(EmailChack);
-          }
+        if (!Email) {
+          return alert("이메일을 채워주세요");
         }
-      })
-
-      .catch((err) => {
-        console.log(err);
-      });
+        if (isValidEmail(Email)) {
+          return alert("이메일이 아닙니다.");
+        }
+        if (duplicateEmails.length > 0) {
+          alert("중복된 이메일이 있습니다.");
+          setEmailChack(0);
+          console.log(EmailChack);
+        } else {
+          alert("이메일 사용이 가능합니다.");
+          setEmailChack(1);
+          console.log(EmailChack);
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
-
   function getDuplicateEmails(emailList) {
     const duplicateEmails = [];
 
