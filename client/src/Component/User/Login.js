@@ -1,45 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginDiv from "../../style/UserCSS";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import firebase from "../../firebase.js";
-import { loginUser } from "../../Reducer/userSlice.js";
-import axios from "axios";
 
 function Login() {
   const [Email, setEmail] = useState("");
   const [PW, setPW] = useState("");
   const [ErrorMsg, setErrorMsg] = useState("");
-  let navigate = useNavigate();
 
-  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  let navigate = useNavigate();
 
   const SingInFunc = async (e) => {
     e.preventDefault();
     if (!(Email && PW)) {
-      return alert("모든 값을 채워주세요!");
+      return alert("모든 값을 채워주세요.");
     }
     try {
       await firebase.auth().signInWithEmailAndPassword(Email, PW);
-      const user = firebase.auth().currentUser;
-      const userEmail = user.email;
-
-      const response = await axios.post("/api/user/getUserNum", {
-        email: userEmail,
-      });
-      const userNum = response.data.userNum;
-
-      dispatch(
-        loginUser({
-          displayName: user.displayName,
-          uid: user.uid,
-          accessToken: user.accessToken,
-          userNum: userNum,
-        })
-      );
-
       navigate("/");
     } catch (error) {
+      console.log(error.code);
       if (error.code === "auth/user-not-found") {
         setErrorMsg("존재하지 않는 이메일입니다.");
       } else if (error.code === "auth/wrong-password") {
@@ -49,10 +31,17 @@ function Login() {
       }
     }
   };
+
+  useEffect(() => {
+    if (user.accessToken) {
+      navigate("/");
+    }
+  }, [user.accessToken, navigate]);
+
   useEffect(() => {
     setTimeout(() => {
       setErrorMsg("");
-    }, 1000);
+    }, 5000);
   }, [ErrorMsg]);
 
   return (

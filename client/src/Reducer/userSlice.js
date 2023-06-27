@@ -6,7 +6,7 @@ export const userSlice = createSlice({
     displayName: "",
     uid: "",
     accessToken: "",
-    userNum: null,
+    userNum: "",
   },
   reducers: {
     loginUser: (state, action) => {
@@ -19,7 +19,7 @@ export const userSlice = createSlice({
       state.displayName = "";
       state.uid = "";
       state.accessToken = "";
-      state.userNum = null;
+      state.userNum = "";
     },
   },
 });
