@@ -11,8 +11,13 @@ function Register() {
   const [PW, setPW] = useState("");
   const [PWConfirm, setPWConfirm] = useState("");
   const [Flag, setFlag] = useState(false);
+  const [ErrorMsg, setErrorMsg] = useState("");
+  const [NameErrorMsg, setNameErrorMsg] = useState("");
+  const [EmailErrorMsg, setEmailErrorMsg] = useState("");
+  // eslint-disable-next-line
   const [NameList, setNameList] = useState([]);
   const [NickNameChack, setNickNameChack] = useState(0);
+  // eslint-disable-next-line
   const [EmaListil, setEmailList] = useState([]);
   const [EmailChack, setEmailChack] = useState(0);
   useEffect(() => {
@@ -21,6 +26,33 @@ function Register() {
   useEffect(() => {
     console.log("NickNameChack 변경됨:", NickNameChack);
   }, [NickNameChack]);
+
+  useEffect(() => {
+    if (ErrorMsg) {
+      const timer = setTimeout(() => {
+        setErrorMsg(""); // 에러 메시지 초기화
+      }, 3000); // 3초 후에 에러 메시지 초기화
+      return () => clearTimeout(timer); // 컴포넌트가 언마운트될 때 타이머 제거
+    }
+  }, [ErrorMsg]);
+
+  useEffect(() => {
+    if (NameErrorMsg) {
+      const timer = setTimeout(() => {
+        setNameErrorMsg("");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [NameErrorMsg]);
+
+  useEffect(() => {
+    if (EmailErrorMsg) {
+      const timer = setTimeout(() => {
+        setEmailErrorMsg("");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [EmailErrorMsg]);
 
   function isValidEmail(Email) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -41,16 +73,25 @@ function Register() {
         setNameList(nameList);
         const duplicateNames = getDuplicateNames(nameList);
         if (!Name) {
-          return alert("닉네임을 채워주세요");
+          return setNameErrorMsg("닉네임을 채워주세요");
         }
-        if (duplicateNames.length > 0) {
-          alert("중복된 닉네임이 있습니다.");
+
+        if (Name.length > 10) {
+          setNameErrorMsg("닉네임을 10글자 이내로 해주세요");
           setNickNameChack(0);
           console.log(NickNameChack);
+          return;
+        }
+        if (duplicateNames.length > 0) {
+          setNameErrorMsg("중복된 닉네임이 있습니다.");
+          setNickNameChack(0);
+          console.log(NickNameChack);
+          return;
         } else {
-          alert("닉네임 사용이 가능합니다.");
+          setNameErrorMsg("닉네임 사용이 가능합니다.");
           setNickNameChack(1);
           console.log(NickNameChack);
+          return;
         }
       }
     } catch (err) {
@@ -70,19 +111,24 @@ function Register() {
           const duplicateEmails = getDuplicateEmails(emailList);
 
           if (!Email) {
-            return alert("이메일을 채워주세요");
+            return setEmailErrorMsg("이메일을 채워주세요");
           }
           if (isValidEmail(Email)) {
-            return alert("이메일이 아닙니다.");
+            return setEmailErrorMsg("이메일이 아닙니다.");
+          }
+          if (Email.length > 25) {
+            return setEmailErrorMsg("이메일이 아닙니다.");
           }
           if (duplicateEmails.length > 0) {
-            alert("중복된 이메일이 있습니다.");
+            setEmailErrorMsg("중복된 이메일이 있습니다.");
             setEmailChack(0);
             console.log(EmailChack);
+            return;
           } else {
-            alert("이메일 사용이 가능합니다.");
+            setEmailErrorMsg("이메일 사용이 가능합니다.");
             setEmailChack(1);
             console.log(EmailChack);
+            return;
           }
         } else {
           // 유효한 배열이 아닌 경우에 대한 처리
@@ -124,19 +170,19 @@ function Register() {
     e.preventDefault();
 
     if (!(Name && Email && PW && PWConfirm)) {
-      return alert("모든 값을 채워주세요!");
+      return setErrorMsg("모든 값을 채워주세요.");
     }
     if (PW !== PWConfirm) {
-      return alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+      return setErrorMsg("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
     }
     if (PW.length < 6) {
-      return alert("비밀번호를 6자리 이상 해주세요!");
+      return setErrorMsg("비밀번호를 6자리 이상 해주세요!");
     }
     if (NickNameChack === 0) {
-      return alert("닉네임 중복검사를 해주세요!");
+      return setErrorMsg("닉네임 중복검사를 해주세요!");
     }
     if (EmailChack === 0) {
-      return alert("이메일 중복검사를 해주세요!");
+      return setErrorMsg("이메일 중복검사를 해주세요!");
     }
 
     let createdUser = await firebase
@@ -172,6 +218,7 @@ function Register() {
           value={Name}
           onChange={(e) => setName(e.currentTarget.value)}
         />
+        {NameErrorMsg && <p>{NameErrorMsg}</p>}
         <button onClick={(e) => isNicknameTaken(e)}>닉네임 중복 체크</button>
         <lable>이메일</lable>
         <input
@@ -179,6 +226,7 @@ function Register() {
           value={Email}
           onChange={(e) => setEmail(e.currentTarget.value)}
         />
+        {EmailErrorMsg && <p>{EmailErrorMsg}</p>}
         <button onClick={(e) => isEmailTaken(e)}>이메일 중복 체크</button>
         <lable>비밀번호</lable>
         <input
@@ -194,6 +242,8 @@ function Register() {
           minLength={8}
           onChange={(e) => setPWConfirm(e.currentTarget.value)}
         />
+
+        {ErrorMsg && <p>{ErrorMsg}</p>}
         <button disabled={Flag} onClick={(e) => RefisterFunc(e)}>
           회원가입
         </button>
