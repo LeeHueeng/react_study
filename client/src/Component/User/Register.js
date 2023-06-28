@@ -188,6 +188,7 @@ function Register() {
     let createdUser = await firebase
       .auth()
       .createUserWithEmailAndPassword(Email, PW);
+
     await createdUser.user.updateProfile({
       displayName: Name,
     });
@@ -202,7 +203,6 @@ function Register() {
       setFlag(true);
       if (response.data.success) {
         navigate("/login");
-        //회원가입 성공
       } else {
         //회원가입 실패시
         return alert("회원가입이 실패했습니다.");

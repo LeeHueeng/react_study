@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useInsertionEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginDiv from "../../style/UserCSS";
 import { useSelector } from "react-redux";
@@ -34,7 +34,7 @@ function Login() {
 
   useEffect(() => {
     if (user.accessToken) {
-      navigate("/");
+      firebase.auth().signOut();
     }
   }, [user.accessToken, navigate]);
 
