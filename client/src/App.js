@@ -11,22 +11,33 @@ import Edit from "./Component/Post/Edit";
 import Login from "./Component/User/Login";
 import Register from "./Component/User/Register";
 import ChannelService from "./Component/User/ChannelService.js";
+import axios from "axios";
 
 function App() {
   ChannelService.loadScript();
   ChannelService.boot({
     pluginKey: "a1686aea-ea22-4974-92b8-328583625997",
   });
+
   const dispatch = useDispatch();
   useEffect(() => {
     firebase.auth().onAuthStateChanged((userInfo) => {
       if (userInfo !== null) {
-        dispatch(loginUser(userInfo.multiFactor.user));
+        const uid = userInfo.uid; // uid 값 추출
+        axios
+          .post("/api/user/getUserNum", { uid }) // 몽고DB API에 요청하여 userNum 값 가져오기
+          .then((response) => {
+            const { userNum } = response.data;
+            dispatch(loginUser({ ...userInfo.multiFactor.user, userNum }));
+          })
+          .catch((error) => {
+            console.log("Failed to fetch userNum from MongoDB:", error);
+          });
       } else {
         dispatch(clearUser());
       }
     });
-  });
+  }, [dispatch]);
 
   return (
     <div>

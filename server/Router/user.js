@@ -55,7 +55,7 @@ router.post("/EmailList", (req, res) => {
 
 router.post("/getUserNum", (req, res) => {
   console.log("UserNumreq");
-  User.findOne({ email: userEmail }) // 이메일로 사용자 조회
+  User.findOne({ uid: req.body.uid }) // uid로 사용자 조회
     .select("userNum") // userNum 필드만 선택
     .exec()
     .then((user) => {

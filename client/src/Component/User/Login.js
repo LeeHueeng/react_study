@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useInsertionEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginDiv from "../../style/UserCSS";
-import { useSelector } from "react-redux";
+
 import firebase from "../../firebase.js";
 
 function Login() {
@@ -9,7 +9,6 @@ function Login() {
   const [PW, setPW] = useState("");
   const [ErrorMsg, setErrorMsg] = useState("");
 
-  const user = useSelector((state) => state.user);
   let navigate = useNavigate();
 
   const SingInFunc = async (e) => {
