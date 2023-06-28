@@ -33,10 +33,9 @@ function Login() {
   };
 
   useEffect(() => {
-    if (user.accessToken) {
-      firebase.auth().signOut();
-    }
-  }, [user.accessToken, navigate]);
+    firebase.auth().signOut();
+    console.log("계정 초기화  ");
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
