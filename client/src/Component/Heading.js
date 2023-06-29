@@ -6,16 +6,18 @@ import Navbar from "react-bootstrap/Navbar";
 import "./Heading.css";
 import { useSelector } from "react-redux";
 import firebase from "../firebase.js";
+import { useLocation } from "react-router-dom";
 
 function Heading() {
   const user = useSelector((state) => state.user);
-
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const pathname = location.pathname;
+  const uploadnum = pathname.split("/")[2];
   useEffect(() => {
     console.log("user", user);
   }, [user]);
-
+  console.log(uploadnum);
   const LogoutHandler = () => {
     firebase.auth().signOut();
     navigate("/");
@@ -41,19 +43,18 @@ function Heading() {
                 >
                   home
                 </Link>
-
-                <Link
-                  to="/upload"
-                  style={{
-                    color: "white",
-                    textDecoration: "none",
-                    marginRight: "10px",
-                  }}
-                >
-                  upload
-                </Link>
               </div>
             )}
+            <Link
+              to={`/upload/${uploadnum}`}
+              style={{
+                color: "white",
+                textDecoration: "none",
+                marginRight: "10px",
+              }}
+            >
+              upload
+            </Link>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">

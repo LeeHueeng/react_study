@@ -45,7 +45,6 @@ function App() {
         <Heading />
         <Routes>
           <Route path="/list/:userPage" element={<List />} />
-
           <Route path="/upload/:userPage" element={<Upload />} />
           <Route path="/post/:userPage/:postNum" element={<PostArea />} />
           <Route path="/edit/:userPage/:postNum" element={<Edit />} />
