@@ -25,7 +25,7 @@ function Heading() {
   return (
     <Navbar expand="lg" variant="dark" style={{ backgroundColor: "#8064A2" }}>
       <Container>
-        <Navbar.Brand href="/">Hueeng</Navbar.Brand>
+        <Navbar.Brand href="/notice/0">Hueeng</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
