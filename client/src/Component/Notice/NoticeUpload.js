@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import {
   UploadDiv,
   UploadForm,
@@ -6,18 +7,22 @@ import {
 } from "../../style/UplodeCSS.js";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import ImageUpload from "./ImageUpload.js";
+import ImageUpload from "../Post/ImageUpload.js";
 
-function NoticeUpload() {
-  const [PW, setPW] = useState("");
-
+function NoticeUpload(props) {
   const [Title, setTitle] = useState("");
   const [Content, setContent] = useState("");
-  let navigate = useNavigate();
   const [Image, setImage] = useState("");
-  const [Name, setName] = useState("");
-  const pathname = window.location.pathname;
-  const userPage = pathname.split("/")[2];
+
+  let navigate = useNavigate();
+  const user = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (user.isLoading && !user.accessToken) {
+      alert("관리자만 글을 작성 할 수 있습니다.");
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -29,13 +34,11 @@ function NoticeUpload() {
       title: Title,
       content: Content,
       image: Image,
-      name: Name,
-      userpage: userPage,
-      PW: PW,
+      uid: user.uid,
     };
 
     axios
-      .post("/api/post/submit", body)
+      .post("/api/notice/submit", body)
       .then((response) => {
         if (response.data.success) {
           alert("글 작성이 완료되었습니다.");
@@ -72,21 +75,6 @@ function NoticeUpload() {
           }}
         />
         <UploadButtonDiv>
-          <lable>닉네임</lable>
-          <input
-            id="name"
-            type="text"
-            value={Name}
-            onChange={(event) => {
-              setName(event.currentTarget.value);
-            }}
-          />
-          <lable>비밀번호</lable>
-          <input
-            type="password"
-            value={PW}
-            onChange={(e) => setPW(e.currentTarget.value)}
-          />
           <button
             onClick={(e) => {
               onSubmit(e);

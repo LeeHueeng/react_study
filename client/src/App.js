@@ -12,6 +12,7 @@ import Login from "./Component/User/Login";
 import Register from "./Component/User/Register";
 import ChannelService from "./Component/User/ChannelService.js";
 import Notice from "./Component/Notice/Notice";
+import NoticeUpload from "./Component/Notice/NoticeUpload";
 import axios from "axios";
 
 function App() {
@@ -45,7 +46,8 @@ function App() {
       <BrowserRouter>
         <Heading />
         <Routes>
-          <Route path="/notice/0" element={<Notice />} />
+          <Route path="/notice" element={<Notice />} />
+          <Route path="/noticeupload" element={<NoticeUpload />} />
           <Route path="/list/:userPage" element={<List />} />
           <Route path="/upload/:userPage" element={<Upload />} />
           <Route path="/post/:userPage/:postNum" element={<PostArea />} />

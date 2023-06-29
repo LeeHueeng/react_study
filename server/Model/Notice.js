@@ -5,16 +5,17 @@ const noticeSchema = new mongoose.Schema(
     title: String,
     content: String,
     postNum: Number,
-    page: Number,
     image: String,
-    displayname: String,
-
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
     repleNum: {
       type: Number,
       default: 0,
     },
   },
-  { collection: "Notice" }
+  { collection: "Notice", timestamps: true }
 );
 
 const Notice = mongoose.model("Notice", noticeSchema);

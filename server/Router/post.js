@@ -51,20 +51,6 @@ router.post("/list", (req, res) => {
     });
 });
 
-router.post("/noticelist", (req, res) => {
-  console.log("요청이 들어왔습니다.");
-  Post.find()
-    .exec()
-    .then((doc) => {
-      console.log("데이터 조회 결과:", doc);
-      res.status(200).json({ success: true, postList: doc });
-    })
-    .catch((err) => {
-      console.log("오류 발생:", err);
-      res.status(400).json({ success: false });
-    });
-});
-
 router.post("/detail", (req, res) => {
   Post.findOne({ postNum: Number(req.body.postNum) })
     .populate("author")

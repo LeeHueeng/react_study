@@ -4,7 +4,7 @@ import { ListDiv, ListItem } from "../../style/ListCSS.js";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-function Notice() {
+function Notice(props) {
   const [NotionList, setNotionList] = useState([]);
   const { userPage } = useParams();
   useEffect(() => {
@@ -27,7 +27,7 @@ function Notice() {
           <ListItem key={idx}>
             <Link to={`/Notion/${notion.postNum}`}>
               <p>제목: {notion.title}</p>
-              <p className="author">작성자 : {notion.displayname}</p>
+              <p className="author">작성자 : {notion.author.displayName}</p>
               내용 : {notion.content}
             </Link>
           </ListItem>
