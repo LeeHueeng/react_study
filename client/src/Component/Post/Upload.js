@@ -39,7 +39,7 @@ function Upload(props) {
       .then((response) => {
         if (response.data.success) {
           alert("글 작성이 완료되었습니다.");
-          navigate("/");
+          navigate(`/list/${userPage}`);
         } else {
           alert("글 작성이 실패하였습니다.");
         }

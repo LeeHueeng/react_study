@@ -37,7 +37,7 @@ function List(props) {
             marginRight: "10px",
           }}
         >
-          친구에게 글 작성하기
+          친구에게 익명 글 작성하기
         </Link>
       </div>
       {PostList.map((post, idx) => {

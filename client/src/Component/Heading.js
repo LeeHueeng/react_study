@@ -30,7 +30,19 @@ function Heading() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             {user.accessToken === "" ? (
-              <div></div>
+              <div>
+                {" "}
+                <Link
+                  to={`/register`}
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    marginRight: "10px",
+                  }}
+                >
+                  내 사이트 만들기
+                </Link>
+              </div>
             ) : (
               <div>
                 <Link
@@ -41,7 +53,7 @@ function Heading() {
                     marginRight: "10px",
                   }}
                 >
-                  home
+                  내 커뮤니티
                 </Link>
               </div>
             )}
