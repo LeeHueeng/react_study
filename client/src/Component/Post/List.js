@@ -21,7 +21,7 @@ function List(props) {
       });
   }, [userPage]);
   const handleLinkCopy = () => {
-    console.log("링크가 복사되었습니다!");
+    alert("링크가 복사되었습니다.");
   };
 
   return (
