@@ -22,6 +22,24 @@ function List(props) {
 
   return (
     <ListDiv>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "10px",
+        }}
+      >
+        <Link
+          to={`/upload/${userPage}`}
+          style={{
+            color: "black",
+            textDecoration: "none",
+            marginRight: "10px",
+          }}
+        >
+          친구에게 글 작성하기
+        </Link>
+      </div>
       {PostList.map((post, idx) => {
         return (
           <ListItem key={idx}>

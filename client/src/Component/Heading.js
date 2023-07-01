@@ -25,7 +25,7 @@ function Heading() {
   return (
     <Navbar expand="lg" variant="dark" style={{ backgroundColor: "#8064A2" }}>
       <Container>
-        <Navbar.Brand href="/notice">Hueeng</Navbar.Brand>
+        <Navbar.Brand href="/notice">투명한마음</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -45,16 +45,6 @@ function Heading() {
                 </Link>
               </div>
             )}
-            <Link
-              to={`/upload/${uploadnum}`}
-              style={{
-                color: "white",
-                textDecoration: "none",
-                marginRight: "10px",
-              }}
-            >
-              upload
-            </Link>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
