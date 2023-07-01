@@ -52,4 +52,16 @@ router.post("/submit", (req, res) => {
     });
 });
 
+router.post("/detail", (req, res) => {
+  Notice.findOne({ postNum: Number(req.body.postNum) })
+    .populate("author")
+    .exec()
+    .then((doc) => {
+      res.status(200).json({ success: true, post: doc });
+    })
+    .catch((err) => {
+      res.status(400).json({ success: false });
+    });
+});
+
 module.exports = router;

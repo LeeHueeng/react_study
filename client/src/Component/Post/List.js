@@ -25,7 +25,7 @@ function List(props) {
       {PostList.map((post, idx) => {
         return (
           <ListItem key={idx}>
-            <Link to={`/post/${post.postNum}`}>
+            <Link to={`/post/${post.userPage}/${post.postNum}`}>
               <p>제목: {post.title}</p>
               <p className="author">작성자 : {post.displayname}</p>
               내용 : {post.content}

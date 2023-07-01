@@ -13,6 +13,7 @@ import Register from "./Component/User/Register";
 import ChannelService from "./Component/User/ChannelService.js";
 import Notice from "./Component/Notice/Notice";
 import NoticeUpload from "./Component/Notice/NoticeUpload";
+import NoticePostArea from "./Component/Notice/NoticePostArea";
 import axios from "axios";
 
 function App() {
@@ -25,9 +26,9 @@ function App() {
   useEffect(() => {
     firebase.auth().onAuthStateChanged((userInfo) => {
       if (userInfo !== null) {
-        const uid = userInfo.uid; // uid 값 추출
+        const uid = userInfo.uid;
         axios
-          .post("/api/user/getUserNum", { uid }) // 몽고DB API에 요청하여 userNum 값 가져오기
+          .post("/api/user/getUserNum", { uid })
           .then((response) => {
             const { userNum } = response.data;
             dispatch(loginUser({ ...userInfo.multiFactor.user, userNum }));
@@ -48,6 +49,7 @@ function App() {
         <Routes>
           <Route path="/notice" element={<Notice />} />
           <Route path="/noticeupload" element={<NoticeUpload />} />
+          <Route path="/notice/:postNum" element={<NoticePostArea />} />
           <Route path="/list/:userPage" element={<List />} />
           <Route path="/upload/:userPage" element={<Upload />} />
           <Route path="/post/:userPage/:postNum" element={<PostArea />} />

@@ -8,9 +8,9 @@ import axios from "axios";
 import RepleArea from "../Reple/RepleArea";
 function PostArea() {
   const [PostInfo, setPostInfo] = useState({});
+
   const [Flag, setFlag] = useState(false);
   let params = useParams();
-
   useEffect(() => {
     let body = {
       postNum: params.postNum,

@@ -7,6 +7,7 @@ import firebase from "../../firebase.js";
 function Login() {
   const [Email, setEmail] = useState("");
   const [PW, setPW] = useState("");
+
   const [ErrorMsg, setErrorMsg] = useState("");
 
   let navigate = useNavigate();

@@ -25,7 +25,7 @@ function Notice(props) {
       {NotionList.map((notion, idx) => {
         return (
           <ListItem key={idx}>
-            <Link to={`/Notion/${notion.postNum}`}>
+            <Link to={`/notice/${notion.postNum}`}>
               <p>제목: {notion.title}</p>
               <p className="author">작성자 : {notion.author.displayName}</p>
               내용 : {notion.content}

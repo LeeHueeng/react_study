@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
-import Detail from "./Detail";
+import NoticeDetail from "./NoticeDetail";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-import RepleArea from "../Reple/RepleArea";
-
 import { Spinner } from "react-bootstrap";
-import { SpinnerDiv } from "../../Style/PostDetailCSS.js";
+import { DetailLoding } from "../../style/DetailCSS.js";
 
 function NoticePostArea() {
   const [PostInfo, setPostInfo] = useState({});
   const [Flag, setFlag] = useState(false);
-
+  console.log("공지사항");
   let params = useParams();
   useEffect(() => {
     let body = {
       postNum: params.postNum,
     };
+    console.log("공지사항 공간");
     axios
       .post("/api/notice/detail", body)
       .then((response) => {
@@ -28,21 +27,20 @@ function NoticePostArea() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [params.postNum]);
 
   return (
     <div>
       {Flag ? (
         <>
-          <Detail PostInfo={PostInfo} />
-          <RepleArea postId={PostInfo._id} />
+          <NoticeDetail PostInfo={PostInfo} />
         </>
       ) : (
-        <SpinnerDiv>
+        <DetailLoding>
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
-        </SpinnerDiv>
+        </DetailLoding>
       )}
     </div>
   );
