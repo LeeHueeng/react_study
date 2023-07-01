@@ -3,6 +3,7 @@ import axios from "axios";
 import { ListDiv, ListItem } from "../../style/ListCSS.js";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 function List(props) {
   const [PostList, setPostList] = useState([]);
@@ -19,6 +20,9 @@ function List(props) {
         console.log(err);
       });
   }, [userPage]);
+  const handleLinkCopy = () => {
+    console.log("링크가 복사되었습니다!");
+  };
 
   return (
     <ListDiv>
@@ -39,6 +43,9 @@ function List(props) {
         >
           친구에게 익명 글 작성하기
         </Link>
+        <CopyToClipboard text={window.location.href} onCopy={handleLinkCopy}>
+          <button className="copy-link-button">친구에게 공유하기</button>
+        </CopyToClipboard>
       </div>
       {PostList.map((post, idx) => {
         return (
