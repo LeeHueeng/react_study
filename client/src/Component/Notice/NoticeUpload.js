@@ -14,7 +14,7 @@ function NoticeUpload(props) {
   const [Content, setContent] = useState("");
   const [Image, setImage] = useState("");
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ function NoticeUpload(props) {
       return alert("모든 항목을 채워주세요!");
     }
 
-    let body = {
+    const body = {
       title: Title,
       content: Content,
       image: Image,

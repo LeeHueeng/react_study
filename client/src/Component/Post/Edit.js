@@ -14,12 +14,12 @@ function Edit() {
   const [Content, setContent] = useState("");
   const [PostInfo, setPostInfo] = useState({});
   const [setFlag] = useState(false);
-  let navigate = useNavigate();
-  let params = useParams();
+  const navigate = useNavigate();
+  const params = useParams();
   const [Image, setImage] = useState("");
 
   useEffect(() => {
-    let body = {
+    const body = {
       postNum: params.postNum,
     };
     axios
@@ -40,7 +40,7 @@ function Edit() {
       return alert("모든 항목을 채워주세요!");
     }
 
-    let body = {
+    const body = {
       title: Title,
       content: Content,
       postNum: params.postNum,

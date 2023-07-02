@@ -10,9 +10,9 @@ function PostArea() {
   const [PostInfo, setPostInfo] = useState({});
 
   const [Flag, setFlag] = useState(false);
-  let params = useParams();
+  const params = useParams();
   useEffect(() => {
-    let body = {
+    const body = {
       postNum: params.postNum,
     };
     axios

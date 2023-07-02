@@ -13,7 +13,7 @@ function Upload(props) {
 
   const [Title, setTitle] = useState("");
   const [Content, setContent] = useState("");
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [Image, setImage] = useState("");
   const [Name, setName] = useState("");
   const pathname = window.location.pathname;
@@ -25,7 +25,7 @@ function Upload(props) {
       return alert("모든 항목을 채워주세요!");
     }
 
-    let body = {
+    const body = {
       title: Title,
       content: Content,
       image: Image,

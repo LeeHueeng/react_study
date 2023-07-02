@@ -14,7 +14,7 @@ function RepleContent(props) {
 
   const SubmitHandler = (e) => {
     e.preventDefault();
-    let body = {
+    const body = {
       uid: user.uid,
       reple: Reple,
       postId: props.reple.postId,
@@ -33,7 +33,7 @@ function RepleContent(props) {
   const DeliteHandler = (e) => {
     e.preventDefault();
     if (window.confirm("정말로 삭제하겠습니까?")) {
-      let body = {
+      const body = {
         repleId: props.reple._id,
         postId: props.reple.postId,
       };

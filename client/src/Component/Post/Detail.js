@@ -15,13 +15,13 @@ import { Link } from "react-router-dom";
 
 function Detail(props) {
   console.log("detail");
-  let params = useParams();
-  let navigate = useNavigate();
+  const params = useParams();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
 
   const DeleteHandler = () => {
     if (window.confirm("정말로 삭제하겠습니까?")) {
-      let body = {
+      const body = {
         postNum: params.postNum,
         userPage: params.userPage,
       };

@@ -13,13 +13,13 @@ import {
   DetailAnswer,
 } from "../../style/DetailCSS.js";
 function NoticeDetail(props) {
-  let params = useParams();
-  let navigate = useNavigate();
+  const params = useParams();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
 
   const DeleteHandler = () => {
     if (window.confirm("정말로 삭제하시겠습니까?")) {
-      let body = {
+      const body = {
         postNum: params.postNum,
       };
       axios

@@ -10,9 +10,9 @@ function NoticePostArea() {
   const [PostInfo, setPostInfo] = useState({});
   const [Flag, setFlag] = useState(false);
   console.log("공지사항");
-  let params = useParams();
+  const params = useParams();
   useEffect(() => {
-    let body = {
+    const body = {
       postNum: params.postNum,
     };
     console.log("공지사항 공간");
