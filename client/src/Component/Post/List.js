@@ -8,6 +8,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 function List(props) {
   const [PostList, setPostList] = useState([]);
   const { userPage } = useParams();
+
   useEffect(() => {
     axios
       .post("/api/post/list", { userPage: Number(userPage) })
@@ -43,6 +44,8 @@ function List(props) {
         >
           친구에게 익명 글 작성하기
         </Link>
+        <hr />
+
         <CopyToClipboard text={window.location.href} onCopy={handleLinkCopy}>
           <button className="copy-link-button">친구에게 공유하기</button>
         </CopyToClipboard>

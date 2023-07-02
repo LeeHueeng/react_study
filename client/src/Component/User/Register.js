@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [PW, setPW] = useState("");
@@ -141,14 +141,14 @@ function Register() {
       });
   };
   function getDuplicateEmails(emailList) {
-    const duplicateEmails = [];
-
-    for (let i = 0; i < emailList.length; i++) {
-      const email = emailList[i].email;
-      if (email === Email && !duplicateEmails.includes(Email)) {
-        duplicateEmails.push(Email);
+    let duplicateEmails = [];
+    duplicateEmails = emailList.reduce((acc, item) => {
+      const email = item.email;
+      if (email === Email && !acc.includes(Email)) {
+        acc.push(Email);
       }
-    }
+      return acc;
+    }, duplicateEmails);
 
     return duplicateEmails;
   }
