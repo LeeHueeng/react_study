@@ -30,9 +30,9 @@ function Register() {
   useEffect(() => {
     if (ErrorMsg) {
       const timer = setTimeout(() => {
-        setErrorMsg(""); // 에러 메시지 초기화
-      }, 3000); // 3초 후에 에러 메시지 초기화
-      return () => clearTimeout(timer); // 컴포넌트가 언마운트될 때 타이머 제거
+        setErrorMsg("");
+      }, 3000);
+      return () => clearTimeout(timer);
     }
   }, [ErrorMsg]);
 
@@ -131,9 +131,7 @@ function Register() {
             return;
           }
         } else {
-          // 유효한 배열이 아닌 경우에 대한 처리
           console.log("Invalid emailList:", response);
-          // 오류 처리 또는 기본값 설정 등을 수행
         }
       })
       .catch((err) => {

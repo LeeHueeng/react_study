@@ -8,6 +8,8 @@ router.post("/submit", (req, res) => {
   let temp = {
     reple: req.body.reple,
     postId: req.body.postId,
+    displayName: req.body.displayName,
+    PW: req.body.PW,
   };
 
   User.findOne({ uid: req.body.uid })

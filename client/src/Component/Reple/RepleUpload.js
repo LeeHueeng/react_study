@@ -5,17 +5,22 @@ import { RepleUploads } from "../../style/RepleCSS.js";
 
 function RepleUpload(props) {
   const [Reple, setReple] = useState("");
+  const [PW, setPW] = useState("");
+  const [displayName, setdisplayName] = useState("");
   const user = useSelector((state) => state.user);
+
   const SubmitHandler = (e) => {
     e.preventDefault();
 
     if (!Reple) {
       return alert("댓글을 작성해주세요.");
     }
-    let body = {
+    const body = {
       reple: Reple,
-      uid: user.uid,
+      displayName: displayName,
       postId: props.postId,
+      PW: PW,
+      uid: props.userId,
     };
 
     axios.post("/api/reple/submit", body).then((response) => {
@@ -36,6 +41,29 @@ function RepleUpload(props) {
           setReple(e.currentTarget.value);
         }}
       />
+      <br />
+      <label>
+        비밀번호
+        <input
+          type="password"
+          value={PW}
+          onChange={(e) => {
+            setPW(e.currentTarget.value);
+          }}
+        />
+      </label>
+
+      <label>
+        이름
+        <input
+          type="text"
+          value={displayName}
+          onChange={(e) => {
+            setdisplayName(e.currentTarget.value);
+          }}
+        />
+      </label>
+
       <button
         onClick={(e) => {
           SubmitHandler(e);

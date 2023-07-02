@@ -7,7 +7,7 @@ function RepleArea(props) {
   console.log("props.postId", props.postId);
   return (
     <div>
-      {user.accessToken && <RepleUpload postId={props.postId} />}
+      <RepleUpload postId={props.postId} />
       <RepleList postId={props.postId} />
     </div>
   );

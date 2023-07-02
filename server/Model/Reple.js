@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const repleSchema = new mongoose.Schema(
   {
     reple: String,
-
+    displayName: String,
+    PW: String,
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
