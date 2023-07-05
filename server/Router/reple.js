@@ -12,10 +12,10 @@ router.post("/submit", (req, res) => {
     PW: req.body.PW,
   };
 
-  User.findOne({ uid: req.body.uid })
+  Post.findOne({ postNum: req.body.postNum })
     .exec()
-    .then((userInfo) => {
-      temp.author = userInfo._id;
+    .then((page) => {
+      temp.author = page.postNum;
       const NewReple = new Reple(temp);
       NewReple.save()
         .then(() => {

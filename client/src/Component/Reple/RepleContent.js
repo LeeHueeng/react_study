@@ -15,7 +15,6 @@ function RepleContent(props) {
   const SubmitHandler = (e) => {
     e.preventDefault();
     const body = {
-      uid: user.uid,
       reple: Reple,
       postId: props.reple.postId,
       repleId: props.reple._id,
@@ -57,7 +56,7 @@ function RepleContent(props) {
       <dix>
         <div class="author">
           <div className="userInfo">
-            <p>{props.reple.author.displayName}</p>
+            <p>{props.reple.displayName}</p>
             {EdifFlag ? (
               <RepleUploads>
                 <input
@@ -89,26 +88,24 @@ function RepleContent(props) {
               <comment>{props.reple.reple}</comment>
             )}
           </div>
-          {props.reple.author.uid === user.uid && (
-            <div className="modalControl">
-              <span onClick={() => setModalFlag(true)}>···</span>
-              {ModalFlag && (
-                <div className="modalDiv" ref={ref}>
-                  <p
-                    onClick={() => {
-                      setEdifFlag(true);
-                      setModalFlag(false);
-                    }}
-                  >
-                    수정
-                  </p>
-                  <p className="delete" onClick={(e) => DeliteHandler(e)}>
-                    삭제
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
+          <div className="modalControl">
+            <span onClick={() => setModalFlag(true)}>···</span>
+            {ModalFlag && (
+              <div className="modalDiv" ref={ref}>
+                <p
+                  onClick={() => {
+                    setEdifFlag(true);
+                    setModalFlag(false);
+                  }}
+                >
+                  수정
+                </p>
+                <p className="delete" onClick={(e) => DeliteHandler(e)}>
+                  삭제
+                </p>
+              </div>
+            )}
+          </div>
 
           <br />
         </div>
