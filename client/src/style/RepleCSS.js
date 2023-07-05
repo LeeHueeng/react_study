@@ -51,9 +51,8 @@ const RepleLists = styled.div`
   }
   .modalControl {
     text-align: end;
-
     padding: 0px;
-    width:45px;
+    width:100px;
   
 
     p{
@@ -65,6 +64,9 @@ const RepleLists = styled.div`
 
 
     }
+  }
+  .menu{
+    text-align: left;
   }
   .modalDiv {
     text-align: center;

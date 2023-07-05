@@ -89,9 +89,13 @@ function RepleContent(props) {
             )}
           </div>
           <div className="modalControl">
-            <span onClick={() => setModalFlag(true)}>···</span>
+            <span className="menu" onClick={() => setModalFlag(true)}>
+              ···
+            </span>
             {ModalFlag && (
               <div className="modalDiv" ref={ref}>
+                <input placeholder="비밀번호"></input>
+
                 <p
                   onClick={() => {
                     setEdifFlag(true);

@@ -20,7 +20,6 @@ function RepleUpload(props) {
       displayName: displayName,
       postId: props.postId,
       PW: PW,
-      uid: props.userId,
     };
 
     axios.post("/api/reple/submit", body).then((response) => {
@@ -35,6 +34,7 @@ function RepleUpload(props) {
   return (
     <RepleUploads>
       <input
+        placeholder="댓글"
         type="text"
         value={Reple}
         onChange={(e) => {
@@ -42,27 +42,25 @@ function RepleUpload(props) {
         }}
       />
       <br />
-      <label>
-        비밀번호
-        <input
-          type="password"
-          value={PW}
-          onChange={(e) => {
-            setPW(e.currentTarget.value);
-          }}
-        />
-      </label>
 
-      <label>
-        이름
-        <input
-          type="text"
-          value={displayName}
-          onChange={(e) => {
-            setdisplayName(e.currentTarget.value);
-          }}
-        />
-      </label>
+      <input
+        placeholder="비밀번호"
+        type="password"
+        value={PW}
+        onChange={(e) => {
+          setPW(e.currentTarget.value);
+        }}
+      />
+
+      <input
+        placeholder="이름"
+        type="text"
+        value={displayName}
+        onChange={(e) => {
+          setdisplayName(e.currentTarget.value);
+        }}
+      />
+      <br />
 
       <button
         onClick={(e) => {
