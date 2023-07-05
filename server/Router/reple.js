@@ -15,7 +15,6 @@ router.post("/submit", (req, res) => {
   Post.findOne({ postNum: req.body.postNum })
     .exec()
     .then((page) => {
-      temp.author = page.postNum;
       const NewReple = new Reple(temp);
       NewReple.save()
         .then(() => {
@@ -35,7 +34,9 @@ router.post("/submit", (req, res) => {
         });
     })
     .catch((err) => {
-      return res.status(400).json({ success: false });
+      res.status(400).json({ success: false });
+      console.log(err);
+      return;
     });
 });
 
