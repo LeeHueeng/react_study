@@ -52,7 +52,8 @@ const RepleLists = styled.div`
   .modalControl {
     text-align: end;
     padding: 0px;
-    width:100px;
+    width:200px;
+    margin-right : 30px;
   
 
     p{
@@ -70,10 +71,12 @@ const RepleLists = styled.div`
   }
   .modalDiv {
     text-align: center;
-
+    position: absolute;
+    z-index: 999;
     border-radius: 5px;
     border: 1px solid gray;
     font-size: 15px;
+    background-color: white;
     .delete{
       color :red;
     }
