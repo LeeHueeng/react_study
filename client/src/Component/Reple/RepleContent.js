@@ -100,7 +100,7 @@ function RepleContent(props) {
             </button>
           </RepleUploads>
         ) : (
-          <comment>{props.reple.reple}</comment>
+          <pre>{props.reple.reple}</pre>
         )}
       </div>
 

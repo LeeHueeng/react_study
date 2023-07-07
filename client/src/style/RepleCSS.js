@@ -47,7 +47,7 @@ const RepleLists = styled.div`
 
   .userInfo {
     color: gray;
-    font-size: 15px;
+    font-size: 18px;
     margin-right: auto;
     width: 100%;
   }
@@ -90,12 +90,14 @@ const RepleLists = styled.div`
       width: 80px;
     }
   }
-  comment {
+  pre {
     color: black;
-    font-size: 15px;
+    font-family: "Jua", sans-serif;
+    font-size: 28px;
     margin: 10px;
     word-break: break-word;
     display: block;
+    whitespace: "pre-line";
   }
 `;
 export { RepleUploads, RepleLists };
