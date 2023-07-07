@@ -10,7 +10,7 @@ function Login() {
 
   const [ErrorMsg, setErrorMsg] = useState("");
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const SingInFunc = async (e) => {
     e.preventDefault();

@@ -9,15 +9,32 @@ function RepleContent(props) {
   const [Reple, setReple] = useState(props.reple.reple);
   const ref = useRef();
   const user = useSelector((state) => state.user);
+  const [PWS, setPWS] = useState("");
 
   useOnClickOutside(ref, () => setModalFlag(false));
-
+  function useOnClickOutside(ref, handler) {
+    useEffect(() => {
+      const listener = (event) => {
+        if (!ref.current || ref.current.contains(event.target)) {
+          return;
+        }
+        handler(event);
+      };
+      document.addEventListener("mousedown", listener);
+      document.addEventListener("touchstart", listener);
+      return () => {
+        document.removeEventListener("mousedown", listener);
+        document.removeEventListener("touchstart", listener);
+      };
+    }, [ref, handler]);
+  }
   const SubmitHandler = (e) => {
     e.preventDefault();
     const body = {
       reple: Reple,
       postId: props.reple.postId,
       repleId: props.reple._id,
+      PW: props.reple.PW,
     };
     axios.post("/api/reple/edit", body).then((response) => {
       if (response.data.success) {
@@ -52,50 +69,54 @@ function RepleContent(props) {
   };
 
   return (
-    <div>
-      <dix>
-        <div class="author">
-          <div className="userInfo">
-            <p>{props.reple.displayName}</p>
-            {EdifFlag ? (
-              <RepleUploads>
-                <input
-                  type="text"
-                  value={Reple}
-                  onChange={(e) => {
-                    setReple(e.currentTarget.value);
-                  }}
-                />
-                <button
-                  onClick={(e) => {
-                    SubmitHandler(e);
-                    console.log(props.postId);
-                  }}
-                >
-                  수정
-                </button>
-                <button
-                  className="cancel"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setEdifFlag(false);
-                  }}
-                >
-                  취소
-                </button>
-              </RepleUploads>
-            ) : (
-              <comment>{props.reple.reple}</comment>
-            )}
-          </div>
-          <div className="modalControl">
-            <span className="menu" onClick={() => setModalFlag(true)}>
-              ···
-            </span>
-            {ModalFlag && (
-              <div className="modalDiv" ref={ref}>
-                <input placeholder="비밀번호"></input>
-
+    <div className="ContentContainer">
+      <div className="userInfo">
+        <p>{props.reple.displayName}</p>
+        {EdifFlag ? (
+          <RepleUploads>
+            <input
+              type="text"
+              value={Reple}
+              onChange={(e) => {
+                setReple(e.currentTarget.value);
+              }}
+            />
+            <button
+              onClick={(e) => {
+                SubmitHandler(e);
+                console.log(props.postId);
+              }}
+            >
+              수정
+            </button>
+            <button
+              className="cancel"
+              onClick={(e) => {
+                e.preventDefault();
+                setEdifFlag(false);
+              }}
+            >
+              취소
+            </button>
+          </RepleUploads>
+        ) : (
+          <comment>{props.reple.reple}</comment>
+        )}
+      </div>
+      <div className="modalControl">
+        <span className="menu" onClick={() => setModalFlag(true)}>
+          ···
+        </span>
+        {ModalFlag && (
+          <div className="modalDiv" ref={ref}>
+            <input
+              placeholder="비밀번호"
+              type="password"
+              value={PWS}
+              onChange={(e) => setPWS(e.target.value)}
+            />
+            {props.reple.PW === PWS && (
+              <div>
                 <p
                   onClick={() => {
                     setEdifFlag(true);
@@ -110,29 +131,12 @@ function RepleContent(props) {
               </div>
             )}
           </div>
+        )}
 
-          <br />
-        </div>
-      </dix>
+        <br />
+      </div>
     </div>
   );
-}
-
-function useOnClickOutside(ref, handler) {
-  useEffect(() => {
-    const listener = (event) => {
-      if (!ref.current || ref.current.contains(event.target)) {
-        return;
-      }
-      handler(event);
-    };
-    document.addEventListener("mousedown", listener);
-    document.addEventListener("touchstart", listener);
-    return () => {
-      document.removeEventListener("mousedown", listener);
-      document.removeEventListener("touchstart", listener);
-    };
-  }, [ref, handler]);
 }
 
 export default RepleContent;

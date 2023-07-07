@@ -29,14 +29,19 @@ const RepleLists = styled.div`
   border: 1px solid gray;
   margin-bottom: 10px;
 
-  .author {
+  .ContentContainer{
+    width :80%;
     display: flex;
-    border: 1px solid gray;
     min-height: 85px;
-    border-radius: 5px;
-    margin-bottom:10px;
-    padding : 5px;
+    border-radius: 8px;
+    margin :auto;
+    margin-top: 30px;
+    padding : 20px;
+    box-shadow: 5px 5px 5px 5px gray;
+    
   }
+
+ 
   .userInfo {
   
     color: gray;

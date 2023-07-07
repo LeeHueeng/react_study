@@ -6,7 +6,7 @@ function RepleList(props) {
   const [repleList, setrepleList] = useState([]);
 
   useEffect(() => {
-    let body = {
+    const body = {
       postId: props.postId,
     };
     axios.post("/api/reple/getReple", body).then((response) => {
