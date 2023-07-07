@@ -74,7 +74,7 @@ function RepleContent(props) {
         <p>{props.reple.displayName}</p>
         {EdifFlag ? (
           <RepleUploads>
-            <input
+            <textarea
               type="text"
               value={Reple}
               onChange={(e) => {
@@ -103,6 +103,7 @@ function RepleContent(props) {
           <comment>{props.reple.reple}</comment>
         )}
       </div>
+
       <div className="modalControl">
         <span className="menu" onClick={() => setModalFlag(true)}>
           ···
