@@ -21,7 +21,7 @@ function Upload(props) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (Title === "" || Content === "") {
+    if (Title === "" || Content === "" || PW === "" || Name === "") {
       return alert("모든 항목을 채워주세요!");
     }
 

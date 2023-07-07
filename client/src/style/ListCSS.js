@@ -8,6 +8,29 @@ const ListDiv = styled.div`
   @media (max-width: 756px) {
     width: 90%;
   }
+  .copy-link-button {
+    margin: 5px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #8064a2;
+    color: white;
+    border-width: 1px;
+    font-size: 15px;
+    width: 180px;
+    text-align: center;
+  }
+  .freandupload {
+    width: 180px;
+    text-align: center;
+    background-color: #8064a2;
+    border-radius: 10px;
+    height: 30px;
+    margin: 5px;
+    border: 1px solid;
+    padding: 1px;
+    Link {
+    }
+  }
 `;
 const ListItem = styled.div`
   width: 100%;

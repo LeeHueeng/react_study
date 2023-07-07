@@ -34,16 +34,20 @@ function List(props) {
           marginBottom: "10px",
         }}
       >
-        <Link
-          to={`/upload/${userPage}`}
-          style={{
-            color: "black",
-            textDecoration: "none",
-            marginRight: "10px",
-          }}
-        >
-          친구에게 익명 글 작성하기
-        </Link>
+        <div className="freandupload">
+          <Link
+            to={`/upload/${userPage}`}
+            style={{
+              color: "white",
+              textDecoration: "none",
+              margin: "5px",
+              fontSize: "15px",
+              padding: "1px",
+            }}
+          >
+            친구에게 익명 글 작성하기
+          </Link>
+        </div>
         <hr />
 
         <CopyToClipboard text={window.location.href} onCopy={handleLinkCopy}>
