@@ -33,34 +33,35 @@ function RepleUpload(props) {
   };
   return (
     <RepleUploads>
-      <input
-        placeholder="댓글"
-        type="text"
-        value={Reple}
-        onChange={(e) => {
-          setReple(e.currentTarget.value);
-        }}
-      />
-      <br />
+      <div className="RepleUp">
+        <textarea
+          placeholder="댓글"
+          type="text"
+          value={Reple}
+          onChange={(e) => {
+            setReple(e.currentTarget.value);
+          }}
+        />
+        <br />
 
-      <input
-        placeholder="비밀번호"
-        type="password"
-        value={PW}
-        onChange={(e) => {
-          setPW(e.currentTarget.value);
-        }}
-      />
+        <input
+          placeholder="비밀번호"
+          type="password"
+          value={PW}
+          onChange={(e) => {
+            setPW(e.currentTarget.value);
+          }}
+        />
 
-      <input
-        placeholder="이름"
-        type="text"
-        value={displayName}
-        onChange={(e) => {
-          setdisplayName(e.currentTarget.value);
-        }}
-      />
-      <br />
+        <input
+          placeholder="이름"
+          type="text"
+          value={displayName}
+          onChange={(e) => {
+            setdisplayName(e.currentTarget.value);
+          }}
+        />
+      </div>
 
       <button
         onClick={(e) => {

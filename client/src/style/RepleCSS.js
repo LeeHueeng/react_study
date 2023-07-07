@@ -6,15 +6,19 @@ const RepleUploads = styled.div`
   margin-bottom: 3rem;
   justify-content: center;
   text-align: center;
-
+  .RepleUp {
+    text-align: center;
+  }
   input {
     border-radius: 10px;
     width: 60%;
     height: 40px;
-    margin-right: 20px;
     border: 1px solid #c6c6c6;
+    padding: 10px;
+    margin: 5px;
   }
   button {
+    margin: 5px;
     height: 40px;
     border-radius: 10px;
     width: 80px;
@@ -24,7 +28,11 @@ const RepleUploads = styled.div`
   }
   textarea {
     border-radius: 10px;
-    width: 100%;
+    width: 60%;
+    height: 40px;
+    margin: 5px;
+    border: 1px solid #c6c6c6;
+    padding: 10px;
     min-height: 200px;
   }
 `;
