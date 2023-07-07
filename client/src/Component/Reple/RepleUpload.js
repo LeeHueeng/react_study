@@ -13,7 +13,14 @@ function RepleUpload(props) {
     e.preventDefault();
 
     if (!Reple) {
-      return alert("댓글을 작성해주세요.");
+      return alert("댓글을 작성해 주세요.");
+    }
+
+    if (!PW) {
+      return alert("비밀번호를 작성해 주세요");
+    }
+    if (!displayName) {
+      return alert("닉네임을 작성해 주세요.");
     }
     const body = {
       reple: Reple,
