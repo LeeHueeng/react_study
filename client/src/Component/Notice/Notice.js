@@ -22,6 +22,19 @@ function Notice(props) {
 
   return (
     <ListDiv>
+      <div className="freandupload">
+        <Link
+          to={`/noticeupload`}
+          style={{
+            color: "white",
+            textDecoration: "none",
+            margin: "5px",
+            fontSize: "15px",
+          }}
+        >
+          공지사항 작성
+        </Link>
+      </div>
       {NotionList.map((notion, idx) => {
         return (
           <ListItem key={idx}>
