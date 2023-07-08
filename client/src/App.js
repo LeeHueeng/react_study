@@ -44,6 +44,7 @@ function App() {
       <BrowserRouter>
         <Heading />
         <Routes>
+          <Route path="/" element={<Notice />} />
           <Route path="/notice" element={<Notice />} />
           <Route path="/noticeupload" element={<NoticeUpload />} />
           <Route path="/notice/:postNum" element={<NoticePostArea />} />
