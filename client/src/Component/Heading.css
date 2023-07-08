@@ -3,7 +3,7 @@
 .Navbarbackground {
   background-color: #8064a2;
 }
-
 * {
   font-family: "Jua", sans-serif;
+  font-display: swap;
 }

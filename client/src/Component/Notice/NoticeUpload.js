@@ -16,13 +16,21 @@ function NoticeUpload(props) {
 
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
-
+  const [showAlert, setShowAlert] = useState(false);
   useEffect(() => {
     if (user.userNum !== 0 && !user.accessToken) {
+      setShowAlert(true);
+    } else {
+      setShowAlert(false);
+    }
+  }, [user.userNum, user.accessToken]);
+
+  useEffect(() => {
+    if (showAlert) {
       alert("관리자만 글을 작성 할 수 있습니다.");
       navigate("/");
     }
-  }, [user, navigate]);
+  }, [showAlert, navigate]);
 
   const onSubmit = (e) => {
     e.preventDefault();

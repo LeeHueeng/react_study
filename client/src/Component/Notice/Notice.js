@@ -57,10 +57,17 @@ function Notice(props) {
           </Link>
         </div>
       )}
-      <div>
-        <p>현재 회원 수 : {UserNum}</p>
-        <p>현재 게시글 수 : {postNum}</p>
-      </div>
+
+      <table
+        style={{
+          width: "100%",
+          textAlign: "center",
+        }}
+      >
+        <td>총 회원 수 : {UserNum}</td>
+        <td>총 게시글 수 : {postNum}</td>
+      </table>
+
       {NotionList.map((notion, idx) => {
         return (
           <ListItem key={idx}>
