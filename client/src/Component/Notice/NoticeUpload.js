@@ -18,9 +18,9 @@ function NoticeUpload(props) {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (user.isLoading && !user.accessToken) {
+    if (user.userNum !== 0 && !user.accessToken) {
       alert("관리자만 글을 작성 할 수 있습니다.");
-      navigate("/login");
+      navigate("/");
     }
   }, [user, navigate]);
 
