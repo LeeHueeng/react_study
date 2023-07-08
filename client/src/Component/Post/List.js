@@ -9,31 +9,6 @@ function List(props) {
   const [PostList, setPostList] = useState([]);
   const { userPage } = useParams();
   console.log(Notification.permission);
-  function getNotificationPermission() {
-    if (!("Notification" in window)) {
-      alert("데스크톱 알림을 지원하지 않는 브라우저입니다.");
-      return;
-    }
-
-    if (Notification.permission === "granted") {
-      alert("이미 알림 권한을 허용하셨습니다.");
-      return;
-    }
-
-    if (Notification.permission !== "denied") {
-      Notification.requestPermission()
-        .then((permission) => {
-          if (permission === "granted") {
-            alert("알림을 허용하셨습니다.");
-          } else if (permission === "denied") {
-            alert("알림 권한을 거부하셨습니다.");
-          }
-        })
-        .catch((error) => {
-          console.log("알림 권한 요청에 실패했습니다.", error);
-        });
-    }
-  }
 
   useEffect(() => {
     axios
@@ -72,7 +47,6 @@ function List(props) {
           >
             친구에게 익명 글 작성하기
           </Link>
-          <button onClick={getNotificationPermission}>알람</button>
         </div>
         <hr />
 

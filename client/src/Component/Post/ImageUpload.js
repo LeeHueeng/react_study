@@ -13,6 +13,7 @@ function ImageUpload(props) {
 
   return (
     <div>
+      <label>이미지 업로드</label>
       <Form.Control
         type="file"
         className="shadow-none"

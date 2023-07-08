@@ -63,8 +63,9 @@ function Upload(props) {
           }}
         />
         <ImageUpload setImage={setImage}></ImageUpload>
-
+        <br />
         <label htmlFor="content">내용</label>
+
         <textarea
           value={Content}
           onChange={(event) => {
@@ -72,28 +73,30 @@ function Upload(props) {
           }}
         />
         <UploadButtonDiv>
-          <lable>닉네임</lable>
-          <input
-            id="name"
-            type="text"
-            value={Name}
-            onChange={(event) => {
-              setName(event.currentTarget.value);
-            }}
-          />
-          <lable>비밀번호</lable>
-          <input
-            type="password"
-            value={PW}
-            onChange={(e) => setPW(e.currentTarget.value)}
-          />
-          <button
-            onClick={(e) => {
-              onSubmit(e);
-            }}
-          >
-            제출!
-          </button>
+          <div>
+            <lable>닉네임</lable>
+            <input
+              id="name"
+              type="text"
+              value={Name}
+              onChange={(event) => {
+                setName(event.currentTarget.value);
+              }}
+            />
+            <lable>비밀번호</lable>
+            <input
+              type="password"
+              value={PW}
+              onChange={(e) => setPW(e.currentTarget.value)}
+            />
+            <button
+              onClick={(e) => {
+                onSubmit(e);
+              }}
+            >
+              제출!
+            </button>
+          </div>
         </UploadButtonDiv>
       </UploadForm>
     </UploadDiv>

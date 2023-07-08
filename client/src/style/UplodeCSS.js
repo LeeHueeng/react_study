@@ -10,6 +10,8 @@ const UploadForm = styled.form`
   margin:0 auto;
   display:flex;
   flex-direction:column;
+
+
   #title{
     border-radius:10px;
     margin-bottom: 10px;
@@ -57,6 +59,7 @@ const UploadButtonDiv = styled.div`
   display: flex;
   justify-content: flex-end;
   button {
+    margin: 5px;
     border-radius: 15px;
     padding: 5px 10px;
     background-color: black;
@@ -66,6 +69,16 @@ const UploadButtonDiv = styled.div`
       background-color: white;
       color: black;
       border: 1px solid black;
+    }
+  }
+  div {
+    lable {
+      margin: 5px;
+      font-size: 18px;
+    }
+    input {
+      margin-right: 10px;
+      border-radius: 8px;
     }
   }
 `;
