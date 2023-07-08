@@ -3,10 +3,12 @@ import axios from "axios";
 import { ListDiv, ListItem } from "../../style/ListCSS.js";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Notice(props) {
   const [NotionList, setNotionList] = useState([]);
   const { userPage } = useParams();
+  const user = useSelector((state) => state.user);
   useEffect(() => {
     axios
       .post("/api/notice/noticelist")
@@ -20,21 +22,28 @@ function Notice(props) {
       });
   }, [userPage]);
 
+  useEffect(() => {
+    console.log("user", user.userNum);
+  }, [user]);
+
   return (
     <ListDiv>
-      <div className="freandupload">
-        <Link
-          to={`/noticeupload`}
-          style={{
-            color: "white",
-            textDecoration: "none",
-            margin: "5px",
-            fontSize: "15px",
-          }}
-        >
-          공지사항 작성
-        </Link>
-      </div>
+      {user.userNum === 0 && (
+        <div className="freandupload">
+          <Link
+            to={`/noticeupload`}
+            style={{
+              color: "white",
+              textDecoration: "none",
+              margin: "5px",
+              fontSize: "15px",
+            }}
+          >
+            공지사항 작성
+          </Link>
+        </div>
+      )}
+
       {NotionList.map((notion, idx) => {
         return (
           <ListItem key={idx}>
