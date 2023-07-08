@@ -64,4 +64,18 @@ router.post("/detail", (req, res) => {
     });
 });
 
+router.post("/result", (req, res) => {
+  Counter.findOne({ name: "counter" })
+    .exec()
+    .then((counter) => {
+      const UserNum = counter.userNum;
+      const postNum = counter.postNum;
+
+      res.status(200).json({ success: true, UserNum, postNum });
+    })
+    .catch((err) => {
+      res.status(400).json({ success: false });
+    });
+});
+
 module.exports = router;

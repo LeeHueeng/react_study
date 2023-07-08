@@ -9,6 +9,24 @@ function Notice(props) {
   const [NotionList, setNotionList] = useState([]);
   const { userPage } = useParams();
   const user = useSelector((state) => state.user);
+  const [UserNum, setUserNum] = useState("0");
+  const [postNum, setPostNum] = useState("0");
+  useEffect(() => {
+    axios
+      .post("/api/notice/result")
+      .then((response) => {
+        if (response.data.success) {
+          const UserNum = response.data.UserNum;
+          const postNum = response.data.postNum;
+          setUserNum(UserNum);
+          setPostNum(postNum);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [userPage]);
+
   useEffect(() => {
     axios
       .post("/api/notice/noticelist")
@@ -21,10 +39,6 @@ function Notice(props) {
         console.log(err);
       });
   }, [userPage]);
-
-  useEffect(() => {
-    console.log("user", user.userNum);
-  }, [user]);
 
   return (
     <ListDiv>
@@ -43,7 +57,10 @@ function Notice(props) {
           </Link>
         </div>
       )}
-
+      <div>
+        <p>현재 회원 수 : {UserNum}</p>
+        <p>현재 게시글 수 : {postNum}</p>
+      </div>
       {NotionList.map((notion, idx) => {
         return (
           <ListItem key={idx}>
