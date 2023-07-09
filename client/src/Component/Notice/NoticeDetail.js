@@ -46,7 +46,7 @@ function NoticeDetail(props) {
             <hr />
             {props.PostInfo.image ? (
               <img
-                src={`http://localhost:5000/${props.PostInfo.image}`}
+                src={props.PostInfo.image}
                 alt=""
                 style={{ width: "100%", height: "auto" }}
               />

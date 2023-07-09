@@ -30,7 +30,9 @@ router.post("/submit", (req, res) => {
   Counter.findOne({ name: "counter" })
     .exec()
     .then((counter) => {
-      temp.postNum = counter.postNum;
+      const randomPostNum = Math.random().toString(36).substring(2, 8);
+
+      temp.postNum = randomPostNum;
 
       User.findOne({ uid: req.body.uid })
         .exec()
@@ -53,7 +55,7 @@ router.post("/submit", (req, res) => {
 });
 
 router.post("/detail", (req, res) => {
-  Notice.findOne({ postNum: Number(req.body.postNum) })
+  Notice.findOne({ postNum: String(req.body.postNum) })
     .populate("author")
     .exec()
     .then((doc) => {

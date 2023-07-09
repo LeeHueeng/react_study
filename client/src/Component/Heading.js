@@ -6,18 +6,11 @@ import Navbar from "react-bootstrap/Navbar";
 import "./Heading.css";
 import { useSelector } from "react-redux";
 import firebase from "../firebase.js";
-import { useLocation } from "react-router-dom";
 
 function Heading() {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
-  const location = useLocation();
-  const pathname = location.pathname;
-  const uploadnum = pathname.split("/")[2];
-  useEffect(() => {
-    console.log("user", user);
-  }, [user]);
-  console.log(uploadnum);
+
   const LogoutHandler = () => {
     firebase.auth().signOut();
     navigate("/");
@@ -45,8 +38,8 @@ function Heading() {
               </div>
             ) : (
               <div>
-                <Link
-                  to={`/list/${user.userNum}`}
+                <a
+                  href={`/list/${user.userNum}`}
                   style={{
                     color: "white",
                     textDecoration: "none",
@@ -54,7 +47,7 @@ function Heading() {
                   }}
                 >
                   내 커뮤니티
-                </Link>
+                </a>
               </div>
             )}
           </Nav>

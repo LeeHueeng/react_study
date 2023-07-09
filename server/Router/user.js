@@ -7,7 +7,8 @@ router.post("/register", (req, res) => {
   let temp = req.body;
   Counter.findOne({ name: "counter" })
     .then((doc) => {
-      temp.userNum = doc ? doc.userNum : 0;
+      const randomPostNum = Math.random().toString(36).substring(2, 8);
+      temp.userNum = randomPostNum;
       console.log(temp);
       const userData = new User(temp);
       userData.save().then(() => {

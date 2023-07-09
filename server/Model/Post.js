@@ -4,10 +4,10 @@ const postSchema = new mongoose.Schema(
   {
     title: String,
     content: String,
-    postNum: Number,
+    postNum: String,
     page: Number,
     image: String,
-    userPage: Number,
+    userPage: String,
     PW: String,
     displayname: String,
 

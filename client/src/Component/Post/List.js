@@ -12,7 +12,7 @@ function List(props) {
 
   useEffect(() => {
     axios
-      .post("/api/post/list", { userPage: Number(userPage) })
+      .post("/api/post/list", { userPage: String(userPage) })
       .then((response) => {
         if (response.data.success) {
           setPostList([...response.data.postList]);

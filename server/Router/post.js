@@ -15,11 +15,12 @@ router.post("/submit", (req, res) => {
     displayname: req.body.name,
     PW: req.body.PW,
   };
-  console.log(temp);
   Counter.findOne({ name: "counter" })
     .exec()
     .then((counter) => {
-      temp.postNum = counter ? counter.postNum : 0;
+      const randomPostNum = Math.random().toString(36).substring(2, 8);
+
+      temp.postNum = randomPostNum;
       const CommunityPost = new Post(temp);
       CommunityPost.save().then(() => {
         Counter.updateOne({ name: "counter" }, { $inc: { postNum: 1 } }).then(
@@ -37,7 +38,7 @@ router.post("/submit", (req, res) => {
 });
 router.post("/list", (req, res) => {
   console.log("요청이 들어왔습니다.");
-  const userPage = Number(req.body.userPage);
+  const userPage = String(req.body.userPage);
   console.log(userPage);
   Post.find({ userPage: userPage })
     .exec()
@@ -52,7 +53,7 @@ router.post("/list", (req, res) => {
 });
 
 router.post("/detail", (req, res) => {
-  Post.findOne({ postNum: Number(req.body.postNum) })
+  Post.findOne({ postNum: String(req.body.postNum) })
     .exec()
     .then((doc) => {
       console.log(doc);
