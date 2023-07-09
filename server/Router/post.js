@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Post } = require("../Model/Post.js");
 const { Counter } = require("../Model/Counter.js");
-const multer = require("multer");
+
 const { User } = require("../Model/User.js");
 const setUpload = require("../utile/upload.js");
 
@@ -115,7 +115,7 @@ router.post("/image/upload", (req, res) => {
 
 router.post(
   "/image/upload",
-  setUpload("react-community-hueeng/post"),
+  setUpload("mycommunity/post"),
   (req, res, next) => {
     res.status(200).json({ success: true, filePath: res.req.file.location });
   }

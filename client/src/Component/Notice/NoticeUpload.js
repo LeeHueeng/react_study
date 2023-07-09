@@ -7,7 +7,7 @@ import {
 } from "../../style/UplodeCSS.js";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import ImageUpload from "../Post/ImageUpload.js";
+import ImageUpload from "./NoticeImageUpload.js";
 
 function NoticeUpload(props) {
   const [Title, setTitle] = useState("");
@@ -73,7 +73,7 @@ function NoticeUpload(props) {
             setTitle(event.currentTarget.value);
           }}
         />
-        <ImageUpload setImage={setImage}></ImageUpload>
+        <ImageUpload setImage={setImage} />
 
         <label htmlFor="content">내용</label>
         <textarea

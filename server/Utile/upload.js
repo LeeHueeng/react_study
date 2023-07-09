@@ -2,17 +2,17 @@ const AWS = require("aws-sdk");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
 const path = require("path");
-const config = require("../config/key.js");
 
 const endpoint = new AWS.Endpoint("https://kr.object.ncloudstorage.com");
 const region = "kr-standard";
+const config = require("../config/key.js");
 
 const S3 = new AWS.S3({
   endpoint: endpoint,
   region: region,
   credentials: {
-    accessKeyId: config.access_key,
-    secretAccessKey: config.secret_key,
+    accessKeyId: config.accessKeyId,
+    secretAccessKey: config.secretAccessKey,
   },
 });
 
@@ -30,4 +30,5 @@ function setUpload(bucket) {
   }).single("file");
   return upload;
 }
+
 module.exports = setUpload;

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Notice } = require("../Model/Notice.js");
 const { Counter } = require("../Model/Counter.js");
-const multer = require("multer");
+
 const { User } = require("../Model/User.js");
 const setUpload = require("../utile/upload.js");
 
@@ -77,5 +77,13 @@ router.post("/result", (req, res) => {
       res.status(400).json({ success: false });
     });
 });
+
+router.post(
+  "/image/upload",
+  setUpload("mycommunity/post"),
+  (req, res, next) => {
+    res.status(200).json({ success: true, filePath: res.req.file.location });
+  }
+);
 
 module.exports = router;

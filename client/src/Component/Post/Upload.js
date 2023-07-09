@@ -62,7 +62,7 @@ function Upload(props) {
             setTitle(event.currentTarget.value);
           }}
         />
-        <ImageUpload setImage={setImage}></ImageUpload>
+        <ImageUpload setImage={setImage} />
         <br />
         <label htmlFor="content">내용</label>
 

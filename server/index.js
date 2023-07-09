@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const port = 5000;
+
 const mongoose = require("mongoose");
 const config = require("./config/key.js");
 
