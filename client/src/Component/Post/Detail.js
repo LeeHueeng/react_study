@@ -50,9 +50,9 @@ function Detail(props) {
             <hr />
             {props.PostInfo.image ? (
               <img
-                src={`http://localhost:5000/${props.PostInfo.image}`}
+                src={props.PostInfo.image}
                 alt=""
-                style={{ width: "100%", height: "auto" }}
+                style={{ width: "80%", height: "auto" }}
               />
             ) : null}
             <DetailContent>{props.PostInfo.content}</DetailContent>
