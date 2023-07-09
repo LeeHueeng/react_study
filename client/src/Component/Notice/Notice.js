@@ -42,7 +42,7 @@ function Notice(props) {
 
   return (
     <ListDiv>
-      {user.userNum === 0 && (
+      {user.userNum === "0" && (
         <div className="freandupload">
           <Link
             to={`/noticeupload`}

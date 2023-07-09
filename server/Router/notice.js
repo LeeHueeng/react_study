@@ -21,6 +21,16 @@ router.post("/noticelist", (req, res) => {
     });
 });
 
+router.post("/delete", (req, res) => {
+  Notice.deleteOne({ postNum: String(req.body.postNum) })
+    .exec()
+    .then(() => {
+      res.status(200).json({ success: true });
+    })
+    .catch((err) => {
+      res.status(400).json({ sucess: false });
+    });
+});
 router.post("/submit", (req, res) => {
   let temp = {
     title: req.body.title,
@@ -59,6 +69,7 @@ router.post("/detail", (req, res) => {
     .populate("author")
     .exec()
     .then((doc) => {
+      console.log(doc);
       res.status(200).json({ success: true, post: doc });
     })
     .catch((err) => {

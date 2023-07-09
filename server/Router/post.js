@@ -80,7 +80,7 @@ router.post("/edit", (req, res) => {
 });
 
 router.post("/delete", (req, res) => {
-  Post.deleteOne({ postNum: Number(req.body.postNum) })
+  Post.deleteOne({ postNum: String(req.body.postNum) })
     .exec()
     .then(() => {
       res.status(200).json({ success: true });
