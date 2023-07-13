@@ -99,4 +99,20 @@ router.post(
   }
 );
 
+router.post("/edit", (req, res) => {
+  let temp = {
+    title: req.body.title,
+    content: req.body.content,
+    image: req.body.image,
+  };
+  Notice.updateOne({ postNum: String(req.body.postNum) }, { $set: temp })
+    .exec()
+    .then(() => {
+      res.status(200).json({ success: true });
+    })
+    .catch((err) => {
+      res.status(400).json({ sucess: false });
+    });
+});
+
 module.exports = router;

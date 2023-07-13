@@ -48,7 +48,7 @@ function NoticeDetail(props) {
               <img
                 src={props.PostInfo.image}
                 alt=""
-                style={{ width: "100%", height: "auto" }}
+                style={{ width: "80%", height: "auto" }}
               />
             ) : null}
             <DetailContent>{props.PostInfo.content}</DetailContent>
@@ -56,7 +56,7 @@ function NoticeDetail(props) {
 
           {user.uid === props.PostInfo.author.uid && (
             <>
-              <Link to={`/edit/${params.postNum}`}>
+              <Link to={`/noticeedit/${params.postNum}`}>
                 <button>수정</button>
               </Link>
 

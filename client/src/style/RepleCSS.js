@@ -25,6 +25,7 @@ const RepleUploads = styled.div`
     background-color: #8064a2;
     color: white;
     font-size: 20px;
+    
   }
   textarea {
     border-radius: 10px;

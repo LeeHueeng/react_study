@@ -11,6 +11,7 @@ import Edit from "./Component/Post/Edit";
 import Login from "./Component/User/Login";
 import Register from "./Component/User/Register";
 
+import NoticeEdit from "./Component/Notice/NoticeEdit";
 import Notice from "./Component/Notice/Notice";
 import NoticeUpload from "./Component/Notice/NoticeUpload";
 import NoticePostArea from "./Component/Notice/NoticePostArea";
@@ -47,6 +48,7 @@ function App() {
           <Route path="/" element={<Notice />} />
           <Route path="/notice" element={<Notice />} />
           <Route path="/noticeupload" element={<NoticeUpload />} />
+          <Route path="/noticeedit/:postNum" element={<NoticeEdit />} />
           <Route path="/notice/:postNum" element={<NoticePostArea />} />
           <Route path="/list/:userPage" element={<List />} />
           <Route path="/upload/:userPage" element={<Upload />} />
