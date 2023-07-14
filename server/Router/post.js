@@ -68,11 +68,19 @@ router.post("/edit", (req, res) => {
   let temp = {
     title: req.body.title,
     content: req.body.content,
+    image: req.body.image,
+    displayname: req.body.name,
+    PW: req.body.PW,
   };
-  Post.updateOne({ postNum: Number(req.body.postNum) }, { $set: temp })
+  Post.updateOne(
+    { postNum: String(req.body.postNum) },
+
+    { $set: temp }
+  )
     .exec()
     .then(() => {
       res.status(200).json({ success: true });
+      console.log("성공", temp);
     })
     .catch((err) => {
       res.status(400).json({ sucess: false });

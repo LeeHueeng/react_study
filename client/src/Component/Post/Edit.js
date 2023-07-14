@@ -10,6 +10,8 @@ import {
 import ImageUpload from "./ImageUpload.js";
 
 function Edit() {
+  const [PW, setPW] = useState("");
+  const [Name, setName] = useState("");
   const [Title, setTitle] = useState("");
   const [Content, setContent] = useState("");
   const [PostInfo, setPostInfo] = useState({});
@@ -43,8 +45,10 @@ function Edit() {
     const body = {
       title: Title,
       content: Content,
-      postNum: params.postNum,
       image: Image,
+      name: Name,
+      PW: PW,
+      postNum: params.postNum,
     };
 
     axios
@@ -52,7 +56,7 @@ function Edit() {
       .then((response) => {
         if (response.data.success) {
           alert("글 수정이 완료되었습니다..");
-          navigate(`/post/${params.postNum}`);
+          navigate(`/post/${params.userNum}/${params.postNum}`);
         } else {
           alert("글 작성이 글 수정에 실패했습니다..");
         }
@@ -90,22 +94,30 @@ function Edit() {
             }}
           />
           <UploadButtonDiv>
-            <button
-              className="cancel"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate(-1);
-              }}
-            >
-              취소
-            </button>
-            <button
-              onClick={(e) => {
-                onSubmit(e);
-              }}
-            >
-              제출!
-            </button>
+            <div>
+              <lable>닉네임</lable>
+              <input
+                id="name"
+                type="text"
+                value={Name}
+                onChange={(event) => {
+                  setName(event.currentTarget.value);
+                }}
+              />
+              <lable>비밀번호</lable>
+              <input
+                type="password"
+                value={PW}
+                onChange={(e) => setPW(e.currentTarget.value)}
+              />
+              <button
+                onClick={(e) => {
+                  onSubmit(e);
+                }}
+              >
+                제출!
+              </button>
+            </div>
           </UploadButtonDiv>
         </UploadForm>
       </UploadDiv>

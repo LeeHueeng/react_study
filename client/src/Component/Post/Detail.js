@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -14,9 +14,9 @@ import {
 import { Link } from "react-router-dom";
 
 function Detail(props) {
-  console.log("detail");
   const params = useParams();
   const navigate = useNavigate();
+  const [PWS, setPWS] = useState("");
   const user = useSelector((state) => state.user);
 
   const DeleteHandler = () => {
@@ -58,9 +58,17 @@ function Detail(props) {
             <DetailContent>{props.PostInfo.content}</DetailContent>
           </Post>
 
-          {user.uid === props.PostInfo.uid && (
+          <div className="modalDiv">
+            <input
+              placeholder="비밀번호"
+              type="password"
+              value={PWS}
+              onChange={(e) => setPWS(e.target.value)}
+            />
+          </div>
+          {props.PostInfo.PW === PWS && (
             <>
-              <Link to={`/edit/${params.postNum}`}>
+              <Link to={`/edit/${params.userPage}/${params.postNum}`}>
                 <button>수정</button>
               </Link>
 

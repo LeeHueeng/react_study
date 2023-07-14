@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
 import { RepleUploads } from "../../style/RepleCSS.js";
 import axios from "axios";
 
@@ -8,7 +7,6 @@ function RepleContent(props) {
   const [EdifFlag, setEdifFlag] = useState(false);
   const [Reple, setReple] = useState(props.reple.reple);
   const ref = useRef();
-  const user = useSelector((state) => state.user);
   const [PWS, setPWS] = useState("");
 
   useOnClickOutside(ref, () => setModalFlag(false));
