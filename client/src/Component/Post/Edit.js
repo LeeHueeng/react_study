@@ -69,6 +69,8 @@ function Edit() {
   useEffect(() => {
     setTitle(PostInfo.title);
     setContent(PostInfo.content);
+    setName(PostInfo.displayname);
+    setPW(PostInfo.PW);
   }, [PostInfo]);
 
   return (

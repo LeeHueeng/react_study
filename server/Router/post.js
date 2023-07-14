@@ -56,7 +56,6 @@ router.post("/detail", (req, res) => {
   Post.findOne({ postNum: String(req.body.postNum) })
     .exec()
     .then((doc) => {
-      console.log(doc);
       res.status(200).json({ success: true, post: doc });
     })
     .catch((err) => {
@@ -80,7 +79,6 @@ router.post("/edit", (req, res) => {
     .exec()
     .then(() => {
       res.status(200).json({ success: true });
-      console.log("성공", temp);
     })
     .catch((err) => {
       res.status(400).json({ sucess: false });
