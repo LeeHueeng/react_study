@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { ListDiv, ListItem } from "../../style/ListCSS.js";
+import { ListDiv, ListItem, Postmodel } from "../../style/ListCSS.js";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { RepleUploads } from "../../style/RepleCSS.js";
 
 function List(props) {
   const [PWS, setPWS] = useState("");
@@ -102,7 +101,7 @@ function List(props) {
         return (
           <ListItem key={idx}>
             {" "}
-            <RepleUploads>
+            <Postmodel>
               <div className="modalControl">
                 <span className="menu" onClick={() => setModalFlag(true)}>
                   ···
@@ -115,11 +114,12 @@ function List(props) {
                       value={PWS}
                       onChange={(e) => setPWS(e.target.value)}
                     />
-                    {props.reple.PW === PWS && (
+                    {post.PW === PWS && (
                       <div>
                         <p
                           onClick={() => {
                             setModalFlag(false);
+                            <Link to={`/edit/${post.postNum}`}></Link>;
                           }}
                         >
                           수정
@@ -133,7 +133,7 @@ function List(props) {
                 )}
                 <br />
               </div>
-            </RepleUploads>
+            </Postmodel>
             <Link to={`/post/${post.userPage}/${post.postNum}`}>
               <p>제목: {post.title}</p>
               <p className="author">작성자 : {post.displayname}</p>

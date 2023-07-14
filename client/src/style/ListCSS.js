@@ -50,5 +50,42 @@ const ListItem = styled.div`
     }
   }
 `;
+const Postmodel = styled.div`
+  display: flex;
+  width: 100%;
+  
+  .modalDiv {
+    text  -align: center;
+  }
+  .RepleUp {
+    text-align: center;
+  }
+  input {
+    border-radius: 10px;
+    width: 60%;
+    height: 40px;
+    border: 1px solid #c6c6c6;
+    padding: 10px;
+    margin: 5px;
+  }
+  button {
+    margin: 5px;
+    height: 40px;
+    border-radius: 10px;
+    width: 80px;
+    background-color: #8064a2;
+    color: white;
+    font-size: 20px;
+  }
+  textarea {
+    border-radius: 10px;
+    width: 60%;
+    height: 40px;
+    margin: 5px;
+    border: 1px solid #c6c6c6;
+    padding: 10px;
+    min-height: 200px;
+  }
+`;
 
-export { ListDiv, ListItem };
+export { ListDiv, ListItem, Postmodel };
