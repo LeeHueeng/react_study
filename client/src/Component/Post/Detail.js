@@ -10,6 +10,7 @@ import {
   DetailTitle,
   DetailContent,
   DetailAnswer,
+  LinkStyled,
 } from "../../style/DetailCSS.js";
 import { Link } from "react-router-dom";
 
@@ -59,6 +60,7 @@ function Detail(props) {
           </Post>
 
           <div className="modalDiv">
+            <label>수정 및 삭제</label>
             <input
               placeholder="비밀번호"
               type="password"
@@ -67,13 +69,11 @@ function Detail(props) {
             />
           </div>
           {props.PostInfo.PW === PWS && (
-            <>
-              <Link to={`/edit/${params.userPage}/${params.postNum}`}>
-                <button>수정</button>
-              </Link>
+            <LinkStyled to={`/edit/${params.userPage}/${params.postNum}`}>
+              <button className="edit">수정</button>
 
               <button onClick={() => DeleteHandler()}>삭제</button>
-            </>
+            </LinkStyled>
           )}
         </DetailAnswer>
       </DetailResultDIV>

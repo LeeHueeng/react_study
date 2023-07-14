@@ -59,8 +59,31 @@ const DetailContent = styled.div`
   padding: 0px 40px 0px 40px;
   font-size: 20px;
 `;
+const LinkStyled = styled.div`
+  width: 100%;
+  button {
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 20px;
+    background-color: #8064a2;
+    color: white;
+    padding: 3px 10px;
+  }
+`;
 const DetailAnswer = styled.div`
   margin: auto;
+  .modalDiv {
+    margin: 10px;
+    label {
+      margin: 20px 20px 0px;
+    }
+    input {
+      border-radius: 10px;
+      width: 30%;
+    }
+
+    }
+  }
 `;
 
 export {
@@ -73,4 +96,5 @@ export {
   DetailContent,
   Link,
   DetailAnswer,
+  LinkStyled,
 };
