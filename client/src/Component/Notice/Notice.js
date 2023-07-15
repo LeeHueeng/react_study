@@ -4,6 +4,8 @@ import { ListDiv, ListItem } from "../../style/ListCSS.js";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import moment from "moment";
+import "moment/locale/ko";
 
 function Notice(props) {
   const [NotionList, setNotionList] = useState([]);
@@ -11,6 +13,14 @@ function Notice(props) {
   const user = useSelector((state) => state.user);
   const [UserNum, setUserNum] = useState("0");
   const [postNum, setPostNum] = useState("0");
+  const SetTime = (a, b) => {
+    if (a !== b) {
+      return moment(b).format("YYYY년 MMMM Do, hh:mm") + "(수정됨)";
+    } else {
+      return moment(a).format("YYYY년 MMMM Do, hh:mm");
+    }
+  };
+
   useEffect(() => {
     axios
       .post("/api/notice/result")
@@ -75,6 +85,9 @@ function Notice(props) {
               <p>제목: {notion.title}</p>
               <p className="author">작성자 : {notion.author.displayName}</p>
               내용 : {notion.content}
+              <p className="time">
+                {SetTime(notion.createdAt, notion.updatedAt)}
+              </p>
             </Link>
           </ListItem>
         );

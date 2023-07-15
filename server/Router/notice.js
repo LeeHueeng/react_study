@@ -7,9 +7,11 @@ const { User } = require("../Model/User.js");
 const setUpload = require("../utile/upload.js");
 
 router.post("/noticelist", (req, res) => {
+  let sort = { createdAt: -1 };
   console.log("요청이 들어왔습니다.");
   Notice.find()
     .populate("author")
+    .sort(sort)
     .exec()
     .then((doc) => {
       console.log("데이터 조회 결과:", doc);
