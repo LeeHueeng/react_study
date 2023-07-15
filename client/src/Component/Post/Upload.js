@@ -10,12 +10,12 @@ import ImageUpload from "./ImageUpload.js";
 
 function Upload(props) {
   const [PW, setPW] = useState("");
-
+  const [Name, setName] = useState("");
   const [Title, setTitle] = useState("");
   const [Content, setContent] = useState("");
   const navigate = useNavigate();
   const [Image, setImage] = useState("");
-  const [Name, setName] = useState("");
+  
   const pathname = window.location.pathname;
   const userPage = pathname.split("/")[2];
 

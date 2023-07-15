@@ -42,22 +42,18 @@ const DetailLoding = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const Link = styled.div`
-  width: 100px;
-  background-color: red;
-`;
-
 const DetailTitle = styled.div`
   font-size: 35px;
   margin-top: 40px;
   margin-bottom: 30px;
 `;
 
-const DetailContent = styled.div`
+const DetailContent = styled.pre`
   margin-top: 30px;
   margin-bottom: 30px;
   padding: 0px 40px 0px 40px;
   font-size: 20px;
+  font-family: "Jua", sans-serif;
 `;
 const LinkStyled = styled.div`
   width: 100%;
@@ -94,7 +90,6 @@ export {
   BtnDiv,
   Post,
   DetailContent,
-  Link,
   DetailAnswer,
   LinkStyled,
 };

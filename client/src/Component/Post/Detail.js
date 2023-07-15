@@ -69,11 +69,13 @@ function Detail(props) {
             />
           </div>
           {props.PostInfo.PW === PWS && (
-            <LinkStyled to={`/edit/${params.userPage}/${params.postNum}`}>
-              <button className="edit">수정</button>
+            <Link to={`/edit/${params.userPage}/${params.postNum}`}>
+              <LinkStyled>
+                <button className="edit">수정</button>
 
-              <button onClick={() => DeleteHandler()}>삭제</button>
-            </LinkStyled>
+                <button onClick={() => DeleteHandler()}>삭제</button>
+              </LinkStyled>
+            </Link>
           )}
         </DetailAnswer>
       </DetailResultDIV>

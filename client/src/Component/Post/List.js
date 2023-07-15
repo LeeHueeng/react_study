@@ -4,10 +4,20 @@ import { ListDiv, ListItem } from "../../style/ListCSS.js";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import moment from "moment";
+import "moment/locale/ko";
 
 function List(props) {
   const [PostList, setPostList] = useState([]);
   const { userPage } = useParams();
+
+  const SetTime = (a, b) => {
+    if (a !== b) {
+      return moment(b).format("YYYY년 MMMM Do, hh:mm") + "(수정됨)";
+    } else {
+      return moment(a).format("YYYY년 MMMM Do, hh:mm");
+    }
+  };
 
   useEffect(() => {
     axios
@@ -61,7 +71,8 @@ function List(props) {
             <Link to={`/post/${post.userPage}/${post.postNum}`}>
               <p>제목: {post.title}</p>
               <p className="author">작성자 : {post.displayname}</p>
-              내용 : {post.content}
+              내용 : {post.content}{" "}
+              <p className="time">{SetTime(post.createdAt, post.updatedAt)}</p>
             </Link>
           </ListItem>
         );
