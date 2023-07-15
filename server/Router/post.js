@@ -36,11 +36,15 @@ router.post("/submit", (req, res) => {
       res.status(400).json({ success: false });
     });
 });
+
 router.post("/list", (req, res) => {
+  let sort = { createdAt: -1 };
+
   console.log("요청이 들어왔습니다.");
   const userPage = String(req.body.userPage);
   console.log(userPage);
   Post.find({ userPage: userPage })
+    .sort(sort)
     .exec()
     .then((doc) => {
       console.log("데이터 조회 결과:", doc);
