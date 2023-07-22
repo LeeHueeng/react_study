@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser, clearUser } from "./Reducer/userSlice";
 import firebase from "./firebase.js";
@@ -15,13 +15,13 @@ import NoticeEdit from "./Component/Notice/NoticeEdit";
 import Notice from "./Component/Notice/Notice";
 import NoticeUpload from "./Component/Notice/NoticeUpload";
 import NoticePostArea from "./Component/Notice/NoticePostArea";
-import { initializeChannelService } from "./cinfig/initializeChannelService";
+import { initializeChannelService } from "./config/initializeChannelService";
 import axios from "axios";
 
 function App() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    initializeChannelService();
+  initializeChannelService();
+  const Start = useCallback(() => {
     firebase.auth().onAuthStateChanged((userInfo) => {
       if (userInfo !== null) {
         const uid = userInfo.uid;
@@ -39,6 +39,10 @@ function App() {
       }
     });
   }, [dispatch]);
+
+  useEffect(() => {
+    Start();
+  }, [Start]);
 
   return (
     <div>

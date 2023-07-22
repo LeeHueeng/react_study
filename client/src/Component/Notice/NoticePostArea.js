@@ -9,13 +9,13 @@ import { DetailLoding } from "../../style/DetailCSS.js";
 function NoticePostArea() {
   const [PostInfo, setPostInfo] = useState({});
   const [Flag, setFlag] = useState(false);
-  console.log("공지사항");
+
   const params = useParams();
   useEffect(() => {
     const body = {
       postNum: params.postNum,
     };
-    console.log("공지사항 공간");
+
     axios
       .post("/api/notice/detail", body)
       .then((response) => {
