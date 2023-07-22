@@ -34,12 +34,11 @@ const ListDiv = styled.div`
 `;
 const ListItem = styled.div`
   width: 100%;
-  height: auto;
-  min-height: 120px;
+  height: 150px;
   background: #ffffff;
   margin-top: 5vh;
   margin-bottom: 5vh;
-  padding: 20px;
+  padding: 15px;
   box-shadow: 0px 19px 38px rgba(0, 0, 0, 0.03),
     0px 15px 12px rgba(0, 0, 0, 0.1);
   a {
@@ -48,6 +47,24 @@ const ListItem = styled.div`
     .title {
       font-weight: bold;
     }
+  }
+  .content {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+  }
+  .contents {
+    margin-right: auto;
+    max-height: 24px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .time {
+    min-width: 220px;
+    margin-left: auto;
+    font-size: 15px;
+    text-align: right;
   }
 `;
 const Postmodel = styled.div`

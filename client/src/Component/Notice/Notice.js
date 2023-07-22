@@ -84,10 +84,12 @@ function Notice(props) {
             <Link to={`/notice/${notion.postNum}`}>
               <p>제목: {notion.title}</p>
               <p className="author">작성자 : {notion.author.displayName}</p>
-              내용 : {notion.content}
-              <p className="time">
-                {SetTime(notion.createdAt, notion.updatedAt)}
-              </p>
+              <div className="content">
+                <p className="contents">내용 : {notion.content}</p>
+                <p className="time">
+                  {SetTime(notion.createdAt, notion.updatedAt)}
+                </p>
+              </div>
             </Link>
           </ListItem>
         );
