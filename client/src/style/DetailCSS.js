@@ -5,6 +5,16 @@ const DetailDiv = styled.div`
   margin-top: 40px;
   margin-bottom: 1rem;
   text-align: center;
+  button {
+    width: 70px;
+    margin: 30px 5px;
+    background-color: #8064a2;
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+  }
 `;
 
 const DetailResultDIV = styled.div`
